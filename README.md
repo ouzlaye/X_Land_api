@@ -1,3 +1,26 @@
+# 📘 X-Land – API de gestion foncière simplifiée
+
+Ce backend simule un circuit complet de traitement d’une demande foncière entre citoyen, mairie, cadastre et DGID. Il est conçu pour servir de socle à une interface front qui permettrait aux citoyens de suivre leur requête foncière étape par étape.
+
+---
+
+## 🧭 Fonctionnalités couvertes
+
+- ✍️ Soumission d'une demande de régularisation foncière
+- 🌐 Appel simulé au cadastre via X-Road pour demander un NICAD
+- ✅ Validation de la délibération par la mairie
+- 📄 Génération automatique de PDF (délibération, notification d’acte)
+- 🏛️ Demande d’acte foncier (bail ou titre) auprès de la DGID
+- 🔎 Endpoint de suivi complet d’un dossier
+
+---
+
+## 🧩 Liste des endpoints
+
+### 📥 1. Création d'une demande citoyenne
+
+Payload :
+```json
 {
   "citoyen": {
     "nom": "Ndiaye",
