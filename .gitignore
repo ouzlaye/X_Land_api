@@ -4,3 +4,4 @@ __pycache__/
 database/citizen_requests.json
 logs/xroad_logs.json
 documents/
+xland/
