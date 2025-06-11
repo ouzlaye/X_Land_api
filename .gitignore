@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.env
+database/citizen_requests.json
+logs/xroad_logs.json
+documents/

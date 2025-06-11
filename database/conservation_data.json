@@ -1,0 +1,20 @@
+
+[
+  {
+    "numeroTitre": "TF-0001",
+    "nicad": "0123011300100428",
+    "designation": "Terrain urbain",
+    "situation": "Dakar-Banlieue, à 1 km au sud-ouest du village de Malika",
+    "superficie": "350 m²",
+    "proprietaireInscrit": "État du Sénégal",
+    "modeAcquisition": "Immatriculation",
+    "dateInscription": "2019-04-23",
+    "nota": "Pas d’hypothèque",
+    "coordonnees": {
+      "B1": [2487701.55, 1637459.91],
+      "B2": [248715.31, 1637453.94],
+      "B3": [248711.33, 1637444.77],
+      "B4": [248697.57, 1637450.74]
+    }
+  }
+]
