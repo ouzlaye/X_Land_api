@@ -1,72 +1,55 @@
-from datetime import datetime
-from pathlib import Path
-from fpdf import FPDF
+import base64
 import random
+from datetime import datetime
+from services.mairie_service import charger_demandes_existantes, enregistrer_demandes
+from schema.mairie_schema import StatutDemande
 
-def generer_numero_acte(type_acte: str, annee: int = None) -> str:
+def emettre_bail_et_generer_notification(id_demande: str) -> bool:
     """
-    Génère un numéro d’acte formaté selon le type et l’année.
-    Exemple : 'BA-2025-0001' ou 'TF-2025-0009'
+    Simule l'émission d'un bail et la génération d'une notification officielle.
+    Ajoute un document de notification + numéro de bail.
     """
-    prefixe = {
-        "bail_agricole": "BA",
-        "bail_habitation": "BH",
-        "titre_foncier": "TF"
-    }.get(type_acte, "XX")
+    demandes = charger_demandes_existantes()
+    demande_trouvee = False
 
-    annee = annee or datetime.now().year
-    numero = random.randint(1, 9999)
-    return f"{prefixe}-{annee}-{numero:04d}"
+    for demande in demandes:
+        if demande["id"] == id_demande and demande["statut"] == StatutDemande.dossier_transmis_dgid:
+            demande_trouvee = True
 
-def generer_pdf_notification_acte(demande: dict, numero_acte: str, type_acte: str) -> str:
-    """
-    Génère un document PDF de notification d'acte émis par la DGID.
-    """
-    pdf = FPDF()
-    pdf.add_page()
-    pdf.set_font("Arial", size=12)
+            # Générer un numéro de bail unique
+            numero_bail = f"BAIL-2025-{random.randint(1000,9999)}"
 
-    titre = {
-        "bail_agricole": "Notification de bail agricole",
-        "bail_habitation": "Notification de bail à usage d'habitation",
-        "titre_foncier": "Notification de titre foncier"
-    }.get(type_acte, "Notification d’acte foncier")
+            # Construire un contenu textuel de notification réaliste
+            contenu = (
+                f"DGID – Notification de Bail\n\n"
+                f"À : {demande['nomComplet']}\n"
+                f"Téléphone : {demande['telephone']}\n"
+                f"NICAD : {demande.get('nicadAttribue', '-')}\n"
+                f"Superficie : {demande['superficie']}\n"
+                f"Objet : Attribution d’un bail administratif sur le terrain situé à {demande['situation']}.\n\n"
+                f"Le bail porte le numéro {numero_bail}, valable 30 ans, avec un canon annuel de 10 000 FCFA.\n"
+                f"Fait à Dakar, le {datetime.utcnow().date()}"
+            )
 
-    pdf.cell(200, 10, txt=titre, ln=True, align="C")
-    pdf.ln(10)
+            base64_doc = base64.b64encode(contenu.encode("utf-8")).decode("utf-8")
+            notification_doc = {
+                "nom": f"Notification_Bail_{numero_bail}.pdf",
+                "type": "deliberation",  # ou "notification_bail" si tu veux enrichir le type
+                "contenu_base64": base64_doc
+            }
 
-    texte = (
-        f"Demande ID : {demande['id']}\n"
-        f"Citoyen : {demande['citoyen']['prenom']} {demande['citoyen']['nom']}\n"
-        f"NICAD : {demande.get('nicad') or 'Non renseigné'}\n"
-        f"Type d’acte : {type_acte}\n"
-        f"Numéro d’acte : {numero_acte}\n"
-        f"Date : {datetime.now().strftime('%d/%m/%Y')}\n\n"
-        f"L’acte est désormais inscrit dans le système d’enregistrement foncier national."
-    )
-    texte = texte.encode("latin-1", "replace").decode("latin-1")
+            # Enrichir la demande
+            demande.setdefault("documents", []).append(notification_doc)
+            demande["numeroBail"] = numero_bail
+            demande["duree"] = "30 ans"
+            demande["canonAnnuel"] = "10 000 FCFA/an"
+            demande["statut"] = StatutDemande.bail_emis
+            demande.setdefault("historiqueStatuts", []).append(
+                (datetime.utcnow().isoformat(), StatutDemande.bail_emis)
+            )
+            break
 
-    pdf.multi_cell(0, 10, txt=texte)
-
-    chemin_pdf = f"documents/actes/notification_acte_{demande['id']}.pdf"
-    Path(chemin_pdf).parent.mkdir(parents=True, exist_ok=True)
-    pdf.output(chemin_pdf)
-
-    return chemin_pdf
-
-def traiter_demande_acte_foncier(demande: dict, type_acte: str) -> dict:
-    """
-    Traite la demande d’acte foncier après validation de la délibération.
-    Génère le numéro d’acte + PDF et retourne la structure à insérer.
-    """
-    if demande["statut"] != "deliberation_validee":
-        raise ValueError("La demande n'est pas éligible : délibération non validée.")
-
-    numero_acte = generer_numero_acte(type_acte)
-    chemin_pdf = generer_pdf_notification_acte(demande, numero_acte, type_acte)
-
-    return {
-        "type": type_acte,
-        "numero": numero_acte,
-        "pdf": chemin_pdf
-    }
+    if demande_trouvee:
+        enregistrer_demandes(demandes)
+        return True
+    return False

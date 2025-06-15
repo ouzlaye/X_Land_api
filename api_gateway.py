@@ -1,18 +1,12 @@
 from fastapi import FastAPI
-from routers import conservation 
-from routers import logs, mairie, dgid, demande
+from routers import dgid, conservation, logs, mairie, procedure, hypotheque 
 
-
-
-app = FastAPI(title="X-Land Sénégal - API Gateway", version="0.1")
-
-# Intégration du routeur pour le service de conservation foncière
-app.include_router(conservation.router)
-# Intégration du routeur pour les logs 
-app.include_router(logs.router)
-# Intégration du routeur pour la mairie
-app.include_router(mairie.router)
-# Intégration du routeur pour la DGID  
-app.include_router(dgid.router)
-# Intégration du routeur pour les demandes
-app.include_router(demande.router)
+def include_all_routers(app: FastAPI):
+    #app.include_router(dgid.router, prefix="/api", tags=["DGID"])
+    # app.include_router(cadastre.router, prefix="/api", tags=["Cadastre"])
+    app.include_router(mairie.router, prefix="/api", tags=["Mairie"])
+    app.include_router(conservation.router, prefix="/api", tags=["Conservation Foncière"])
+    # app.include_router(blockchain.router, prefix="/api", tags=["Blockchain PoC"])
+    app.include_router(logs.router, prefix="/api", tags=["X-Road Logs"])
+    app.include_router(procedure.router, prefix="/api", tags=["Procédures Foncier"])
+    app.include_router(hypotheque.router, prefix="/api", tags=["Hypothèque"])

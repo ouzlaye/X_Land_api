@@ -1,20 +1,122 @@
-
 [
-  {
-    "numeroTitre": "TF-0001",
-    "nicad": "0123011300100428",
-    "designation": "Terrain urbain",
-    "situation": "Dakar-Banlieue, à 1 km au sud-ouest du village de Malika",
-    "superficie": "350 m²",
-    "proprietaireInscrit": "État du Sénégal",
-    "modeAcquisition": "Immatriculation",
-    "dateInscription": "2019-04-23",
-    "nota": "Pas d’hypothèque",
-    "coordonnees": {
-      "B1": [2487701.55, 1637459.91],
-      "B2": [248715.31, 1637453.94],
-      "B3": [248711.33, 1637444.77],
-      "B4": [248697.57, 1637450.74]
+    {
+        "numeroTitre": "TF-0001",
+        "nicad": "0123011300100428",
+        "designation": "Terrain urbain",
+        "situation": "Dakar-Banlieue, à 1 km au sud-ouest du village de Malika",
+        "superficie": "350 m²",
+        "proprietaireInscrit": "État du Sénégal",
+        "modeAcquisition": "Immatriculation",
+        "dateInscription": "2019-04-23",
+        "nota": "Pas d’hypothèque",
+        "hypotheque": "Aucune",
+        "coordonnees": {
+            "A": [
+                2487701.55,
+                1637459.91
+            ],
+            "B": [
+                248715.31,
+                1637453.94
+            ],
+            "C": [
+                248711.33,
+                1637444.77
+            ],
+            "D": [
+                248697.57,
+                1637450.74
+            ]
+        }
+    },
+    {
+        "numeroTitre": "TF-0002",
+        "nicad": "0302112300200991",
+        "designation": "Terrain agricole",
+        "situation": "Région de Fatick, Niakhar",
+        "superficie": "1200 m²",
+        "proprietaireInscrit": "Société AgriSud",
+        "modeAcquisition": "Vente notariale",
+        "dateInscription": "2022-06-12",
+        "nota": "Hypothèque partielle au profit de BHS",
+        "hypotheque": "Aucune",
+        "coordonnees": {
+            "A": [
+                2470000.0,
+                1637000.0
+            ],
+            "B": [
+                2470100.0,
+                1637000.0
+            ],
+            "C": [
+                2470100.0,
+                1637100.0
+            ],
+            "D": [
+                2470000.0,
+                1637100.0
+            ]
+        }
+    },
+    {
+        "numeroTitre": "TF-0093",
+        "nicad": "0302211100300456",
+        "designation": "Terrain affecté à usage d’habitation",
+        "situation": "Keur Massar Extension, zone lotie",
+        "superficie": "400 m²",
+        "proprietaireInscrit": "M. Aliou Sarr",
+        "modeAcquisition": "Bail administratif",
+        "dateInscription": "2025-07-10",
+        "nota": "Délibération 2025/03 approuvée – bail émis par DGID",
+        "hypotheque": "Aucune",
+        "coordonnees": {
+            "A": [
+                2488100.0,
+                1637500.0
+            ],
+            "B": [
+                2488105.0,
+                1637500.0
+            ],
+            "C": [
+                2488105.0,
+                1637505.0
+            ],
+            "D": [
+                2488100.0,
+                1637505.0
+            ]
+        }
+    },
+    {
+        "numeroTitre": "TF-2487",
+        "nicad": "6994105899857061",
+        "designation": "Terrain à usage d’habitation",
+        "situation": "Yoff, près de la plage BCEAO",
+        "superficie": "400 m²",
+        "proprietaireInscrit": "Mamadou Faye",
+        "modeAcquisition": "Bail administratif",
+        "dateInscription": "2025-06-14",
+        "nota": "Bail attribué sous le n° BAIL-2025-9042",
+        "hypotheque": "Aucune",
+        "coordonnees": {
+            "A": [
+                2488110.0,
+                1637500.0
+            ],
+            "B": [
+                2488115.0,
+                1637500.0
+            ],
+            "C": [
+                2488115.0,
+                1637505.0
+            ],
+            "D": [
+                2488110.0,
+                1637505.0
+            ]
+        }
     }
-  }
 ]

@@ -1,114 +1,181 @@
 import json
 from pathlib import Path
-from typing import Dict, Any
 from uuid import uuid4
-from database.models import NouvelleDemandeRequest
-from fpdf import FPDF
 from datetime import datetime
+from typing import List
+import base64
 
-DATA_PATH = Path("database/citizen_requests.json")
-DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
+from schema.mairie_schema import DemandeFonciereCreate, DemandeFonciere, StatutDemande
 
-def charger_demandes() -> list[Dict[str, Any]]:
+# Chemin vers la base simulée des demandes citoyennes
+DATA_PATH = Path(__file__).resolve().parent.parent / "database" / "citizen_requests.json"
+DATA_PATH.parent.mkdir(exist_ok=True)
+
+def charger_demandes_existantes() -> List[dict]:
     if not DATA_PATH.exists():
         return []
-    with open(DATA_PATH, "r", encoding="utf-8") as f:
-        try:
+    try:
+        with open(DATA_PATH, "r", encoding="utf-8") as f:
             return json.load(f)
-        except json.JSONDecodeError:
-            return []
-
-def enregistrer_nouvelle_demande(demande: NouvelleDemandeRequest) -> Dict[str, Any]:
-    demandes = charger_demandes()
-
-    nouvelle_entree = demande.dict()
-    nouvelle_entree["id"] = f"REQ-{str(uuid4())[:8].upper()}"
-    nouvelle_entree["statut"] = "en_attente"
-    nouvelle_entree["nicad"] = None
-    nouvelle_entree["titreFoncierCree"] = False
-
-    demandes.append(nouvelle_entree)
-
+    except json.JSONDecodeError:
+        return []
+# Fonction pour sérialiser les données avant l'enregistrement
+def serialiser_donnees(obj):
+    if isinstance(obj, datetime):
+        return obj.isoformat()
+    return obj
+# Fonction pour enregistrer les demandes dans le fichier JSON
+def enregistrer_demandes(demandes: List[dict]):
     with open(DATA_PATH, "w", encoding="utf-8") as f:
-        json.dump(demandes, f, indent=2, ensure_ascii=False)
-
-    return nouvelle_entree
+        json.dump(demandes, f, ensure_ascii=False, indent=4, default=serialiser_donnees)
 
 
-def mettre_a_jour_statut_demande(id_demande: str, nouveau_statut: str) -> Dict[str, Any]:
-    demandes = charger_demandes()
-    mise_a_jour = None
+def soumettre_demande(payload: DemandeFonciereCreate) -> DemandeFonciere:
+    demandes = charger_demandes_existantes()
 
-    for d in demandes:
-        if d["id"] == id_demande:
-            d["statut"] = nouveau_statut
-            mise_a_jour = d
-            break
-
-    if mise_a_jour is None:
-        raise ValueError(f"Demande {id_demande} introuvable.")
-
-    with open(DATA_PATH, "w", encoding="utf-8") as f:
-        json.dump(demandes, f, indent=2, ensure_ascii=False)
-
-    return mise_a_jour
-
-# Fonction pour mettre à jour le fichier de demandes
-def mettre_a_jour_fichier_demandes(demandes: list[dict]):
-    with open(DATA_PATH, "w", encoding="utf-8") as f:
-        json.dump(demandes, f, indent=2, ensure_ascii=False)
-
-
-
-
-def generer_pdf_deliberation(demande: dict) -> str:
-    """
-    Génère un PDF officiel de délibération communale basé sur les informations de la demande.
-    Retourne le chemin relatif vers le fichier généré.
-    """
-    pdf = FPDF()
-    pdf.add_page()
-    pdf.set_font("Arial", size=12)
-
-    pdf.cell(200, 10, txt="Délibération Municipale", ln=True, align="C")
-    pdf.ln(10)
-
-    texte = (
-        f"Date : {datetime.now().strftime('%d/%m/%Y')}\n\n"
-        f"Citoyen : {demande['citoyen']['prenom']} {demande['citoyen']['nom']}\n"
-        f"Téléphone : {demande['citoyen']['telephone']}\n"
-        f"ID demande : {demande['id']}\n"
-        f"NICAD attribué : {demande['nicad'] or 'Non précisé'}\n\n"
-        f"La présente délibération autorise la suite du processus de régularisation foncière.\n"
+    nouvelle_demande = DemandeFonciere(
+        id=str(uuid4()),
+        dateSoumission=datetime.utcnow(),
+        statut=StatutDemande.demande_soumise,
+        historiqueStatuts=[(datetime.utcnow(), StatutDemande.demande_soumise)],
+        nomComplet=payload.nomComplet,
+        telephone=payload.telephone,
+        email=payload.email,
+        superficie=payload.superficie,
+        nature=payload.nature,
+        situation=payload.situation,
+        coordonnees=payload.coordonnees,
+        documents=payload.documents or [],
+        nicadAttribue=None
     )
 
-    pdf.multi_cell(0, 10, txt=texte)
+    demandes.append(nouvelle_demande.dict())
+    enregistrer_demandes(demandes)
+    return nouvelle_demande
 
-    chemin_pdf = f"documents/deliberations/delib_{demande['id']}.pdf"
-    Path(chemin_pdf).parent.mkdir(parents=True, exist_ok=True)
-    pdf.output(chemin_pdf)
-
-    return chemin_pdf
-
-def valider_deliberation_par_mairie(id_demande: str) -> dict:
+# Mettre à jour le statut d'une demande existante coté maire
+def mettre_a_jour_statut(id_demande: str, nouveau_statut: StatutDemande) -> bool:
     """
-    Change le statut d'une demande vers 'deliberation_validee'
-    et génère le PDF officiel de délibération.
+    Met à jour le statut d'une demande existante identifiée par son ID.
+    Enregistre le nouveau statut avec un horodatage dans l'historique.
+    Retourne True si succès, False si ID introuvable.
     """
-    demandes = charger_demandes()
-    cible = None
+    demandes = charger_demandes_existantes()
+    demande_trouvee = False
 
-    for d in demandes:
-        if d["id"] == id_demande:
-            if d["statut"] != "nicad_valide":
-                raise ValueError("Impossible de valider la délibération : NICAD non validé.")
-            d["statut"] = "deliberation_validee"
-            d["deliberation_pdf"] = generer_pdf_deliberation(d)
-            cible = d
+    for demande in demandes:
+        if demande["id"] == id_demande:
+            demande["statut"] = nouveau_statut
+            historique = demande.get("historiqueStatuts", [])
+            historique.append((datetime.utcnow().isoformat(), nouveau_statut))
+            demande["historiqueStatuts"] = historique
+            demande_trouvee = True
             break
 
-    if not cible:
-        raise ValueError("Demande introuvable.")
+    if demande_trouvee:
+        enregistrer_demandes(demandes)
+        return True
+    return False
 
-    mettre_a_jour_fichier_demandes(demandes)
-    return cible
+# Simule le traitement initial de la demande par la mairie
+def traiter_instruction_locale(id_demande: str) -> bool:
+    """
+    Simule le traitement initial de la demande par la mairie.
+    Le statut passe de demande_soumise → instruction_locale → attente_nicad.
+    """
+    demandes = charger_demandes_existantes()
+    demande_trouvee = False
+
+    for demande in demandes:
+        if demande["id"] == id_demande:
+            demande_trouvee = True
+
+            # Étape 1 : passer à instruction_locale
+            demande["statut"] = StatutDemande.instruction_locale
+            demande.setdefault("historiqueStatuts", []).append(
+                (datetime.utcnow().isoformat(), StatutDemande.instruction_locale)
+            )
+
+            # Étape 2 : préparer la demande au cadastre
+            demande["statut"] = StatutDemande.attente_nicad
+            demande["historiqueStatuts"].append(
+                (datetime.utcnow().isoformat(), StatutDemande.attente_nicad)
+            )
+            break
+
+    if demande_trouvee:
+        enregistrer_demandes(demandes)
+        return True
+    return False
+
+
+
+# Simule la génération d'une délibération PDF pour une demande
+def generer_deliberation_simulee(id_demande: str) -> bool:
+    """
+    Simule la génération d'une délibération PDF pour une demande.
+    Ajoute un document synthétique dans la liste des pièces jointes.
+    Bascule le statut en 'deliberation_validee'.
+    """
+    demandes = charger_demandes_existantes()
+    demande_trouvee = False
+
+    for demande in demandes:
+        if demande["id"] == id_demande and demande["statut"] == StatutDemande.nicad_valide:
+            demande_trouvee = True
+
+            # Création du document simulé (base64 textuel)
+            contenu = f"DÉLIBÉRATION\nDemandeur : {demande['nomComplet']}\nTerrain : {demande['situation']}\nNICAD : {demande['nicadAttribue']}"
+            encoded = base64.b64encode(contenu.encode("utf-8")).decode("utf-8")
+
+            deliberation_doc = {
+                "nom": f"Deliberation_{id_demande[:8]}.pdf",
+                "type": "deliberation",
+                "contenu_base64": encoded
+            }
+
+            # Ajout du document + maj statut
+            demande.setdefault("documents", []).append(deliberation_doc)
+            demande["statut"] = StatutDemande.deliberation_validee
+            demande.setdefault("historiqueStatuts", []).append(
+                (datetime.utcnow().isoformat(), StatutDemande.deliberation_validee)
+            )
+            break
+
+    if demande_trouvee:
+        enregistrer_demandes(demandes)
+        return True
+    return False
+
+
+# Simule l'envoi du dossier à la DGID
+def transmettre_dossier_dgid(id_demande: str) -> bool:
+    """
+    Simule la transmission du dossier foncier à la DGID pour instruction.
+    Nécessite un NICAD et une délibération validée.
+    """
+    demandes = charger_demandes_existantes()
+    demande_trouvee = False
+
+    for demande in demandes:
+        if demande["id"] == id_demande and demande["statut"] == StatutDemande.deliberation_validee:
+            demande_trouvee = True
+
+            documents = demande.get("documents", [])
+            types_disponibles = [doc["type"] for doc in documents]
+
+            # Vérification des pièces clés (simulation)
+            if not all(t in types_disponibles for t in ["identite", "justificatif_occupation", "deliberation"]):
+                return False  # Blocage si le dossier est incomplet
+
+            # Bascule du statut
+            demande["statut"] = StatutDemande.dossier_transmis_dgid
+            demande.setdefault("historiqueStatuts", []).append(
+                (datetime.utcnow().isoformat(), StatutDemande.dossier_transmis_dgid)
+            )
+            break
+
+    if demande_trouvee:
+        enregistrer_demandes(demandes)
+        return True
+    return False

@@ -1,24 +1,24 @@
 from fastapi import APIRouter, HTTPException
-from database.models import TitleVerificationRequest, LandRecordResponse
-from services.conservation_service import rechercher_dossier_foncier
-from utils.logger import log_xroad_transaction
-router = APIRouter(
-    prefix="/api/landRegistry",
-    tags=["Conservation Foncière"]
-)
+from schema.conservation_schema import VerifyTitleRequest, TitleFoncierModel
+from services.conservation_service import rechercher_titre_foncier
 
-@router.post("/lookup", response_model=LandRecordResponse)
-def verifier_titre_ou_nicad(req: TitleVerificationRequest):
-    result = rechercher_dossier_foncier(nicad=req.nicad, title_number=req.titleNumber)
+router = APIRouter()
 
-    if not result:
-        raise HTTPException(status_code=404, detail="Aucun enregistrement foncier trouvé.")
-    # Log the transaction
-    log_xroad_transaction(
-    caller="Notaire",  #  selon qui utilise l’interface
-    target_service="Conservation Foncière",
-    action="lookup title",
-    payload=req.dict(),
-    result="OK"
-)
-    return result
+@router.post("/verifyTitle", response_model=dict, summary="Vérifie un titre foncier par NICAD ou numéro")
+def verify_title(payload: VerifyTitleRequest):
+    """
+    Recherche un titre foncier dans le registre simulé.
+    Accepte en entrée soit un numeroTitre, soit un nicad (16 chiffres).
+    """
+    titre = rechercher_titre_foncier(numeroTitre=payload.numeroTitre, nicad=payload.nicad)
+
+    if not titre:
+        return {
+            "status": "not_found",
+            "message": "Aucun titre foncier correspondant."
+        }
+
+    return {
+        "status": "found",
+        "data": titre.dict()
+    }

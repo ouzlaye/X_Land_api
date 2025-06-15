@@ -1,19 +1,27 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from pathlib import Path
+from fastapi.responses import JSONResponse
 import json
 
-router = APIRouter(prefix="/api/logs", tags=["Logs"])
+router = APIRouter()
 
-@router.get("/xroad")
-def lire_journal_xroad():
-    log_path = Path("logs/xroad_logs.json")
-    if not log_path.exists():
-        raise HTTPException(status_code=404, detail="Aucun log trouvé.")
+LOG_PATH = Path(__file__).resolve().parent.parent / "logs" / "xroad_logs.jsonl"
 
-    try:
-        with open(log_path, "r", encoding="utf-8") as f:
-            logs = json.load(f)
-        return logs
-    except json.JSONDecodeError:
-        raise HTTPException(status_code=500, detail="Erreur de lecture du fichier log.")
-  
+@router.get("/xroadLogs", tags=["X-Road Logs"], summary="Liste des requêtes simulées entre services")
+def lire_logs_xroad():
+    """
+    Retourne les logs simulés du middleware X-Road.
+    Chaque ligne représente une transaction inter-agence.
+    """
+    if not LOG_PATH.exists():
+        return JSONResponse(content={"logs": []})
+
+    logs = []
+    with open(LOG_PATH, "r", encoding="utf-8") as f:
+        for line in f:
+            try:
+                logs.append(json.loads(line.strip()))
+            except Exception:
+                continue
+
+    return {"logs": logs}

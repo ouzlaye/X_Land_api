@@ -1,13 +1,14 @@
 from fastapi import FastAPI
-from api_gateway import api_router
+from api_gateway import include_all_routers
+from middleware.xroad_tracer import xroad_tracer_middleware
 
-app = FastAPI(
-    title="X-Land Sénégal Backend",
-    description="Backend pour la plateforme d'interopérabilité foncière (MVP)",
-    version="0.1.0"
-)
+app = FastAPI(title="X-Land Backend - Sénégal", version="0.1")
 
-app.include_router(api_router, prefix="/api")
+# Middleware de traçabilité simulée
+app.middleware("http")(xroad_tracer_middleware)
+
+# Inclusion des routes depuis le Gateway
+include_all_routers(app)
 
 if __name__ == "__main__":
     import uvicorn
