@@ -7,7 +7,7 @@ from schema.conservation_schema import TitleFoncierModel
 from schema.mairie_schema import StatutDemande
 from services.mairie_service import charger_demandes_existantes, enregistrer_demandes
 from typing import List
-
+from services.blockchain_service import certifier_transaction
 # Chemin vers la base simulée
 DATA_PATH = Path(__file__).resolve().parent.parent / "database" / "conservation_data.json"
 
@@ -39,7 +39,7 @@ def generer_numero_titre_foncier() -> str:
 
 # Fonction pour ajouter un titre  (pour les tests ou l'initialisation)
 
-def inscrire_bail_au_registre(id_demande: str) -> bool:
+def inscrire_bail_au_registre(id_demande: str) -> dict:
     demandes = charger_demandes_existantes()
     conservation_path = Path(__file__).resolve().parent.parent / "database" / "conservation_data.json"
 
@@ -50,6 +50,7 @@ def inscrire_bail_au_registre(id_demande: str) -> bool:
         conservation_data = []
 
     demande_trouvee = False
+    titre_certifie = None
 
     for demande in demandes:
         if demande["id"] == id_demande and demande["statut"] == StatutDemande.bail_emis:
@@ -71,6 +72,9 @@ def inscrire_bail_au_registre(id_demande: str) -> bool:
 
             conservation_data.append(titre.dict())
 
+            # 🔗 Certification blockchain après inscription
+            titre_certifie = certifier_transaction(titre.numeroTitre, "INSCRIPTION_TF")
+
             # Mise à jour statut côté demande
             demande["statut"] = StatutDemande.bail_inscrit
             demande.setdefault("historiqueStatuts", []).append(
@@ -82,8 +86,14 @@ def inscrire_bail_au_registre(id_demande: str) -> bool:
         with open(conservation_path, "w", encoding="utf-8") as f:
             json.dump(conservation_data, f, ensure_ascii=False, indent=4)
         enregistrer_demandes(demandes)
-        return True
-    return False
+
+        return {
+            "message": "Bail inscrit au registre foncier.",
+            "numeroTitre": titre.numeroTitre,
+            "hashBlockchain": titre_certifie.hashTransaction if titre_certifie else "Erreur certification"
+        }
+
+    return {"message": "Erreur lors de l’inscription du bail.", "numeroTitre": None, "hashBlockchain": None}
 
 
 def charger_titres_fonciers() -> List[dict]:

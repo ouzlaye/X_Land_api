@@ -37,8 +37,14 @@ def emettre_bail(id: str):
         raise HTTPException(status_code=400, detail="Échec lors de l’émission du bail")
     return {"message": "Bail émis avec notification jointe"}
 
-@router.post("/requests/{id}/inscrireBail")
+@router.post("/requests/{id}/inscrireBail", summary="Inscription et certification foncière via blockchain")
 def inscrire_bail(id: str):
-    if not inscrire_bail_au_registre(id):
-        raise HTTPException(status_code=400, detail="Erreur lors de l’inscription foncière")
-    return {"message": "Bail inscrit dans le registre foncier"}
+    """
+    Inscrit un bail dans le registre foncier et certifie immédiatement la transaction via blockchain.
+    Retourne le numéro de titre foncier et son hash blockchain.
+    """
+    result = inscrire_bail_au_registre(id)
+    if not result["numeroTitre"]:
+        raise HTTPException(status_code=400, detail=result["message"])
+
+    return result

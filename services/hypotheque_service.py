@@ -71,21 +71,12 @@ def activer_traceur(numeroTitre: str, banque: str, contact: str, montant: str) -
     return traceur
 
 
-def activer_traceur(numeroTitre: str, banque: str, contact: str, montant: str) -> dict:
-    if not titre_existe(numeroTitre):
-        raise ValueError("Titre foncier introuvable")
-
-    traceur = {
-        "id": str(uuid4()),
-        "numeroTitre": numeroTitre,
-        "nomBanque": banque,
-        "contactBanque": contact,
-        "montantGaranti": montant,
-        "dateDepot": datetime.utcnow().isoformat(),
-        "alertesActives": True
-    }
-
+def detecter_changement_titre():
+    titres = charger_titres_fonciers()
     dossiers = charger_dossiers()
-    dossiers.append(traceur)
-    enregistrer_dossiers(dossiers)
-    return traceur
+
+    for dossier in dossiers:
+        for titre in titres:
+            if dossier["numeroTitre"] == titre["numeroTitre"] and titre.get("statut") in ["vendu", "litige", "muté"]:
+                envoyer_notification_banque(dossier["contactBanque"], titre)
+

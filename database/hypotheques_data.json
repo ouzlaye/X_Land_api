@@ -1,0 +1,12 @@
+[
+    {
+        "id": "9eb879f6-23d0-46f5-b668-74c797094d99",
+        "numeroTitre": "TF-2487",
+        "nomBanque": "BNDE Sénégal",
+        "contactBanque": "correspondant@bnda.sn",
+        "montantGaranti": "25 000 000 FCFA",
+        "dateDepot": "2025-06-14 17:14:43.933482",
+        "statut": "demande_deposee",
+        "alertesActives": true
+    }
+]

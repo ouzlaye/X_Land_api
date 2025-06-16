@@ -118,5 +118,35 @@
                 1637505.0
             ]
         }
+    },
+    {
+        "numeroTitre": "TF-3007",
+        "nicad": "2746089994547768",
+        "designation": "Terrain à usage d’habitation",
+        "situation": "Dakar, Grand-Yoff",
+        "superficie": "350 m²",
+        "proprietaireInscrit": "Aissatou Ndiaye",
+        "modeAcquisition": "Bail administratif",
+        "dateInscription": "2025-06-16",
+        "nota": "Bail attribué sous le n° BAIL-2025-5828",
+        "hypotheque": "Aucune",
+        "coordonnees": {
+            "A": [
+                2488100.0,
+                1637400.0
+            ],
+            "B": [
+                2488105.0,
+                1637400.0
+            ],
+            "C": [
+                2488105.0,
+                1637405.0
+            ],
+            "D": [
+                2488100.0,
+                1637405.0
+            ]
+        }
     }
 ]
