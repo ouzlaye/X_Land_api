@@ -1,0 +1,1 @@
+echo "web: uvicorn api_gateway:app --host 0.0.0.0 --port $PORT" > Procfile
