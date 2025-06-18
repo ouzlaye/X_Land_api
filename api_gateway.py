@@ -1,6 +1,12 @@
 from fastapi import FastAPI
 from routers import dgid, conservation, logs, mairie, procedure, hypotheque 
 
+app = FastAPI()
+
+@app.get("/")
+def home():
+    return {"message": "X-Land API en ligne !"}
+
 def include_all_routers(app: FastAPI):
     #app.include_router(dgid.router, prefix="/api", tags=["DGID"])
     # app.include_router(cadastre.router, prefix="/api", tags=["Cadastre"])
