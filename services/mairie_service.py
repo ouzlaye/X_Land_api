@@ -81,7 +81,7 @@ def mettre_a_jour_statut(id_demande: str, nouveau_statut: StatutDemande) -> bool
 def traiter_instruction_locale(id_demande: str) -> bool:
     """
     Simule le traitement initial de la demande par la mairie.
-    Le statut passe de demande_soumise → instruction_locale → attente_nicad.
+    Le statut passe de demande_soumise → instruction_locale → attente_nicad, sans réécrire un statut finalisé.
     """
     demandes = charger_demandes_existantes()
     demande_trouvee = False
@@ -90,17 +90,23 @@ def traiter_instruction_locale(id_demande: str) -> bool:
         if demande["id"] == id_demande:
             demande_trouvee = True
 
-            # Étape 1 : passer à instruction_locale
-            demande["statut"] = StatutDemande.instruction_locale
-            demande.setdefault("historiqueStatuts", []).append(
-                (datetime.utcnow().isoformat(), StatutDemande.instruction_locale)
-            )
+            #  Vérifier si le traitement est déjà terminé
+            if demande["statut"] == StatutDemande.attente_nicad:
+                return False  # 🚨 Ne rien faire si déjà à l'étape finale
+            
+            # Étape 1 : passer à instruction_locale (uniquement si encore en demande_soumise)
+            if demande["statut"] == StatutDemande.demande_soumise:
+                demande["statut"] = StatutDemande.instruction_locale
+                demande.setdefault("historiqueStatuts", []).append(
+                    (datetime.utcnow().isoformat(), StatutDemande.instruction_locale)
+                )
 
-            # Étape 2 : préparer la demande au cadastre
-            demande["statut"] = StatutDemande.attente_nicad
-            demande["historiqueStatuts"].append(
-                (datetime.utcnow().isoformat(), StatutDemande.attente_nicad)
-            )
+            # Étape 2 : Préparer la demande au cadastre (uniquement si encore en instruction_locale)
+            if demande["statut"] == StatutDemande.instruction_locale:
+                demande["statut"] = StatutDemande.attente_nicad
+                demande["historiqueStatuts"].append(
+                    (datetime.utcnow().isoformat(), StatutDemande.attente_nicad)
+                )
             break
 
     if demande_trouvee:
