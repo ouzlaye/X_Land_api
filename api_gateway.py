@@ -16,3 +16,7 @@ def include_all_routers(app: FastAPI):
     app.include_router(logs.router, prefix="/api", tags=["X-Road Logs"])
     app.include_router(procedure.router, prefix="/api", tags=["Procédure Demande D'attribution Foncière"])
     app.include_router(hypotheque.router, prefix="/api", tags=["Hypothèque"])
+
+
+# ✅ Ajout de l’inclusion des routes
+include_all_routers(app)
