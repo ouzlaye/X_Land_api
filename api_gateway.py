@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routers import dgid, conservation, logs, mairie, procedure, hypotheque 
+from routers import dgid, conservation, logs, mairie, procedure, hypotheque, demande
 
 app = FastAPI()
 
@@ -16,6 +16,8 @@ def include_all_routers(app: FastAPI):
     app.include_router(logs.router, prefix="/api", tags=["X-Road Logs"])
     app.include_router(procedure.router, prefix="/api", tags=["Procédure Demande D'attribution Foncière"])
     app.include_router(hypotheque.router, prefix="/api", tags=["Hypothèque"])
+    # app.include_router.demande.router, prefix="/api", tags=["Demande Citoyenne"])
+    app.include_router(demande.router, prefix="/api", tags=["Retourne toutes les Demandes"])
 
 
 # ✅ Ajout de l’inclusion des routes

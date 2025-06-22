@@ -37,7 +37,7 @@ class DemandeFonciereCreate(BaseModel):
     telephone: str
     email: Optional[str] = None
     superficie: str = Field(..., example="400 m²")
-    nature: Literal["lot", "parcelle"]
+    nature: Literal["lot", "parcelle"] = Field(..., example="lot ou parcelle")
     situation: str = Field(..., example="Keur Massar Extension, près du marché central")
     coordonnees: CoordonneesTerrain
     documents: Optional[List[DocumentJoint]] = []
