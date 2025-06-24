@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from routers import dgid, conservation, logs, mairie, procedure, hypotheque, demande
-
+from services.supabase_sync import restaurer_fichier
+import os
 app = FastAPI()
 
 @app.get("/")
@@ -20,5 +21,11 @@ def include_all_routers(app: FastAPI):
     app.include_router(demande.router, prefix="/api", tags=["Retourne toutes les Demandes"])
 
 
+    
+
+
+if not os.path.exists("database/citizen_requests.json"):
+    restaurer_fichier("citizen_requests.json")
+    
 # ✅ Ajout de l’inclusion des routes
 include_all_routers(app)

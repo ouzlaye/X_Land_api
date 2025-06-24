@@ -9,3 +9,5 @@ passlib
 fpdf
 datetime
 uuid
+supabase
+asyncpg

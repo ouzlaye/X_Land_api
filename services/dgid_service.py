@@ -3,7 +3,7 @@ import random
 from datetime import datetime
 from services.mairie_service import charger_demandes_existantes, enregistrer_demandes
 from schema.mairie_schema import StatutDemande
-
+from services.fichier_sync import ecrire_fichier
 def emettre_bail_et_generer_notification(id_demande: str) -> bool:
     """
     Simule l'émission d'un bail et la génération d'une notification officielle.
@@ -51,5 +51,7 @@ def emettre_bail_et_generer_notification(id_demande: str) -> bool:
 
     if demande_trouvee:
         enregistrer_demandes(demandes)
+        ecrire_fichier("citizen_requests.json", demandes)
+
         return True
     return False

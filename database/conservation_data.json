@@ -148,5 +148,65 @@
                 1637405.0
             ]
         }
+    },
+    {
+        "numeroTitre": "TF-3143",
+        "nicad": "3448823127677184",
+        "designation": "Terrain à usage d’habitation",
+        "situation": "Rue 14, Quartier Malika, Dakar",
+        "superficie": "150 m²",
+        "proprietaireInscrit": "Mariama Diouf",
+        "modeAcquisition": "Bail administratif",
+        "dateInscription": "2025-06-24",
+        "nota": "Bail attribué sous le n° BAIL-2025-7769",
+        "hypotheque": "Aucune",
+        "coordonnees": {
+            "A": [
+                2488050.0,
+                1637350.0
+            ],
+            "B": [
+                2488060.0,
+                1637350.0
+            ],
+            "C": [
+                2488060.0,
+                1637360.0
+            ],
+            "D": [
+                2488050.0,
+                1637360.0
+            ]
+        }
+    },
+    {
+        "numeroTitre": "TF-2406",
+        "nicad": "3448823127677184",
+        "designation": "Terrain à usage d’habitation",
+        "situation": "Rue 14, Quartier Malika, Dakar",
+        "superficie": "150 m²",
+        "proprietaireInscrit": "Mariama Diouf",
+        "modeAcquisition": "Bail administratif",
+        "dateInscription": "2025-06-24",
+        "nota": "Bail attribué sous le n° BAIL-2025-7769",
+        "hypotheque": "Aucune",
+        "coordonnees": {
+            "A": [
+                2488050.0,
+                1637350.0
+            ],
+            "B": [
+                2488060.0,
+                1637350.0
+            ],
+            "C": [
+                2488060.0,
+                1637360.0
+            ],
+            "D": [
+                2488050.0,
+                1637360.0
+            ]
+        }
     }
 ]

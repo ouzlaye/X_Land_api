@@ -2,6 +2,7 @@ import random
 from services.mairie_service import charger_demandes_existantes, enregistrer_demandes
 from schema.mairie_schema import StatutDemande
 from datetime import datetime
+from services.fichier_sync import ecrire_fichier
 
 def generer_nicad_valide() -> str:
     """
@@ -39,5 +40,7 @@ def simuler_reponse_cadastre(id_demande: str) -> bool:
 
     if demande_trouvee:
         enregistrer_demandes(demandes)
+        ecrire_fichier("citizen_requests.json", demandes)
+
         return True
     return False

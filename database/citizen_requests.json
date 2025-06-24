@@ -1,188 +1,277 @@
 [
-    {
-        "id": "484586c1-3037-4333-963d-8cf5090aac41",
-        "dateSoumission": "2025-06-14T14:23:10.458947",
-        "statut": "bail_inscrit",
-        "nomComplet": "Mamadou Faye",
-        "telephone": "771112233",
-        "email": "mamadou.faye@example.com",
-        "superficie": "400 m²",
-        "nature": "parcelle",
-        "situation": "Yoff, près de la plage BCEAO",
-        "coordonnees": {
-            "A": [
-                2488110.0,
-                1637500.0
-            ],
-            "B": [
-                2488115.0,
-                1637500.0
-            ],
-            "C": [
-                2488115.0,
-                1637505.0
-            ],
-            "D": [
-                2488110.0,
-                1637505.0
-            ]
-        },
-        "nicadAttribue": "6994105899857061",
-        "documents": [
-            {
-                "nom": "CNI_MamadouFaye.pdf",
-                "type": "identite",
-                "contenu_base64": "ZmljaGllciBwb3VyIGxlIHRlc3Q="
-            },
-            {
-                "nom": "Justif_Occupation.pdf",
-                "type": "justificatif_occupation",
-                "contenu_base64": "SmVzdGlmaWNhdGlmIGQnYWNxdWlzIGR1IHRlcnJhaW4="
-            },
-            {
-                "nom": "Deliberation_484586c1.pdf",
-                "type": "deliberation",
-                "contenu_base64": "RMOJTElCw4lSQVRJT04KRGVtYW5kZXVyIDogTWFtYWRvdSBGYXllClRlcnJhaW4gOiBZb2ZmLCBwcsOocyBkZSBsYSBwbGFnZSBCQ0VBTwpOSUNBRCA6IDY5OTQxMDU4OTk4NTcwNjE="
-            },
-            {
-                "nom": "Notification_Bail_BAIL-2025-9042.pdf",
-                "type": "deliberation",
-                "contenu_base64": "REdJRCDigJMgTm90aWZpY2F0aW9uIGRlIEJhaWwKCsOAIDogTWFtYWRvdSBGYXllClTDqWzDqXBob25lIDogNzcxMTEyMjMzCk5JQ0FEIDogNjk5NDEwNTg5OTg1NzA2MQpTdXBlcmZpY2llIDogNDAwIG3CsgpPYmpldCA6IEF0dHJpYnV0aW9uIGTigJl1biBiYWlsIGFkbWluaXN0cmF0aWYgc3VyIGxlIHRlcnJhaW4gc2l0dcOpIMOgIFlvZmYsIHByw6hzIGRlIGxhIHBsYWdlIEJDRUFPLgoKTGUgYmFpbCBwb3J0ZSBsZSBudW3DqXJvIEJBSUwtMjAyNS05MDQyLCB2YWxhYmxlIDMwIGFucywgYXZlYyB1biBjYW5vbiBhbm51ZWwgZGUgMTAgMDAwIEZDRkEuCkZhaXQgw6AgRGFrYXIsIGxlIDIwMjUtMDYtMTQ="
-            }
-        ],
-        "historiqueStatuts": [
-            [
-                "2025-06-14T14:23:10.458951",
-                "demande_soumise"
-            ],
-            [
-                "2025-06-14T14:31:32.091924",
-                "instruction_locale"
-            ],
-            [
-                "2025-06-14T14:31:32.091934",
-                "attente_nicad"
-            ],
-            [
-                "2025-06-14T14:33:40.691124",
-                "nicad_valide"
-            ],
-            [
-                "2025-06-14T14:35:15.962226",
-                "deliberation_validee"
-            ],
-            [
-                "2025-06-14T14:36:10.277569",
-                "dossier_transmis_dgid"
-            ],
-            [
-                "2025-06-14T15:24:32.631789",
-                "bail_emis"
-            ],
-            [
-                "2025-06-14T15:26:19.858027",
-                "bail_inscrit"
-            ]
-        ],
-        "numeroBail": "BAIL-2025-9042",
-        "duree": "30 ans",
-        "canonAnnuel": "10 000 FCFA/an"
+  {
+    "id": "484586c1-3037-4333-963d-8cf5090aac41",
+    "dateSoumission": "2025-06-14T14:23:10.458947",
+    "statut": "bail_inscrit",
+    "nomComplet": "Mamadou Faye",
+    "telephone": "771112233",
+    "email": "mamadou.faye@example.com",
+    "superficie": "400 m²",
+    "nature": "parcelle",
+    "situation": "Yoff, près de la plage BCEAO",
+    "coordonnees": {
+      "A": [
+        2488110.0,
+        1637500.0
+      ],
+      "B": [
+        2488115.0,
+        1637500.0
+      ],
+      "C": [
+        2488115.0,
+        1637505.0
+      ],
+      "D": [
+        2488110.0,
+        1637505.0
+      ]
     },
-    {
-        "id": "56b0af7b-23b9-4386-870b-7b10bd2506c5",
-        "dateSoumission": "2025-06-15T18:38:20.166406",
-        "statut": "attente_nicad",
-        "nomComplet": "Aissatou Ndiaye",
-        "telephone": "771234567",
-        "email": "aissatou.ndiaye@example.com",
-        "superficie": "350 m²",
-        "nature": "parcelle",
-        "situation": "Dakar, Grand-Yoff",
-        "coordonnees": {
-            "A": [
-                2488100.0,
-                1637400.0
-            ],
-            "B": [
-                2488105.0,
-                1637400.0
-            ],
-            "C": [
-                2488105.0,
-                1637405.0
-            ],
-            "D": [
-                2488100.0,
-                1637405.0
-            ]
-        },
-        "nicadAttribue": "2746089994547768",
-        "documents": [
-            {
-                "nom": "Carte_Nationale_Aissatou.pdf",
-                "type": "identite",
-                "contenu_base64": "Q2FydGUgTmF0aW9uYWxlIGVuY29kZWU="
-            },
-            {
-                "nom": "Justificatif_Occupation.pdf",
-                "type": "justificatif_occupation",
-                "contenu_base64": "SnVzdGlmaWNhdGlmIGQgb2NjdXBhdGlvbiBlbmNvZGU="
-            },
-            {
-                "nom": "Deliberation_56b0af7b.pdf",
-                "type": "deliberation",
-                "contenu_base64": "RMOJTElCw4lSQVRJT04KRGVtYW5kZXVyIDogQWlzc2F0b3UgTmRpYXllClRlcnJhaW4gOiBEYWthciwgR3JhbmQtWW9mZgpOSUNBRCA6IDI3NDYwODk5OTQ1NDc3Njg="
-            },
-            {
-                "nom": "Notification_Bail_BAIL-2025-5828.pdf",
-                "type": "deliberation",
-                "contenu_base64": "REdJRCDigJMgTm90aWZpY2F0aW9uIGRlIEJhaWwKCsOAIDogQWlzc2F0b3UgTmRpYXllClTDqWzDqXBob25lIDogNzcxMjM0NTY3Ck5JQ0FEIDogMjc0NjA4OTk5NDU0Nzc2OApTdXBlcmZpY2llIDogMzUwIG3CsgpPYmpldCA6IEF0dHJpYnV0aW9uIGTigJl1biBiYWlsIGFkbWluaXN0cmF0aWYgc3VyIGxlIHRlcnJhaW4gc2l0dcOpIMOgIERha2FyLCBHcmFuZC1Zb2ZmLgoKTGUgYmFpbCBwb3J0ZSBsZSBudW3DqXJvIEJBSUwtMjAyNS01ODI4LCB2YWxhYmxlIDMwIGFucywgYXZlYyB1biBjYW5vbiBhbm51ZWwgZGUgMTAgMDAwIEZDRkEuCkZhaXQgw6AgRGFrYXIsIGxlIDIwMjUtMDYtMTY="
-            }
-        ],
-        "historiqueStatuts": [
-            [
-                "2025-06-15T18:38:20.166419",
-                "demande_soumise"
-            ],
-            [
-                "2025-06-16T11:58:17.208077",
-                "instruction_locale"
-            ],
-            [
-                "2025-06-16T11:58:17.208085",
-                "attente_nicad"
-            ],
-            [
-                "2025-06-16T12:00:55.500521",
-                "nicad_valide"
-            ],
-            [
-                "2025-06-16T12:01:43.007949",
-                "deliberation_validee"
-            ],
-            [
-                "2025-06-16T12:02:19.362144",
-                "dossier_transmis_dgid"
-            ],
-            [
-                "2025-06-16T12:03:11.300713",
-                "bail_emis"
-            ],
-            [
-                "2025-06-16T12:09:42.854031",
-                "bail_inscrit"
-            ],
-            [
-                "2025-06-16T12:56:47.320736",
-                "instruction_locale"
-            ],
-            [
-                "2025-06-16T12:56:47.320747",
-                "attente_nicad"
-            ]
-        ],
-        "numeroBail": "BAIL-2025-5828",
-        "duree": "30 ans",
-        "canonAnnuel": "10 000 FCFA/an"
-    }
+    "nicadAttribue": "6994105899857061",
+    "documents": [
+      {
+        "nom": "CNI_MamadouFaye.pdf",
+        "type": "identite",
+        "contenu_base64": "ZmljaGllciBwb3VyIGxlIHRlc3Q="
+      },
+      {
+        "nom": "Justif_Occupation.pdf",
+        "type": "justificatif_occupation",
+        "contenu_base64": "SmVzdGlmaWNhdGlmIGQnYWNxdWlzIGR1IHRlcnJhaW4="
+      },
+      {
+        "nom": "Deliberation_484586c1.pdf",
+        "type": "deliberation",
+        "contenu_base64": "RMOJTElCw4lSQVRJT04KRGVtYW5kZXVyIDogTWFtYWRvdSBGYXllClRlcnJhaW4gOiBZb2ZmLCBwcsOocyBkZSBsYSBwbGFnZSBCQ0VBTwpOSUNBRCA6IDY5OTQxMDU4OTk4NTcwNjE="
+      },
+      {
+        "nom": "Notification_Bail_BAIL-2025-9042.pdf",
+        "type": "deliberation",
+        "contenu_base64": "REdJRCDigJMgTm90aWZpY2F0aW9uIGRlIEJhaWwKCsOAIDogTWFtYWRvdSBGYXllClTDqWzDqXBob25lIDogNzcxMTEyMjMzCk5JQ0FEIDogNjk5NDEwNTg5OTg1NzA2MQpTdXBlcmZpY2llIDogNDAwIG3CsgpPYmpldCA6IEF0dHJpYnV0aW9uIGTigJl1biBiYWlsIGFkbWluaXN0cmF0aWYgc3VyIGxlIHRlcnJhaW4gc2l0dcOpIMOgIFlvZmYsIHByw6hzIGRlIGxhIHBsYWdlIEJDRUFPLgoKTGUgYmFpbCBwb3J0ZSBsZSBudW3DqXJvIEJBSUwtMjAyNS05MDQyLCB2YWxhYmxlIDMwIGFucywgYXZlYyB1biBjYW5vbiBhbm51ZWwgZGUgMTAgMDAwIEZDRkEuCkZhaXQgw6AgRGFrYXIsIGxlIDIwMjUtMDYtMTQ="
+      }
+    ],
+    "historiqueStatuts": [
+      [
+        "2025-06-14T14:23:10.458951",
+        "demande_soumise"
+      ],
+      [
+        "2025-06-14T14:31:32.091924",
+        "instruction_locale"
+      ],
+      [
+        "2025-06-14T14:31:32.091934",
+        "attente_nicad"
+      ],
+      [
+        "2025-06-14T14:33:40.691124",
+        "nicad_valide"
+      ],
+      [
+        "2025-06-14T14:35:15.962226",
+        "deliberation_validee"
+      ],
+      [
+        "2025-06-14T14:36:10.277569",
+        "dossier_transmis_dgid"
+      ],
+      [
+        "2025-06-14T15:24:32.631789",
+        "bail_emis"
+      ],
+      [
+        "2025-06-14T15:26:19.858027",
+        "bail_inscrit"
+      ]
+    ],
+    "numeroBail": "BAIL-2025-9042",
+    "duree": "30 ans",
+    "canonAnnuel": "10 000 FCFA/an"
+  },
+  {
+    "id": "56b0af7b-23b9-4386-870b-7b10bd2506c5",
+    "dateSoumission": "2025-06-15T18:38:20.166406",
+    "statut": "attente_nicad",
+    "nomComplet": "Aissatou Ndiaye",
+    "telephone": "771234567",
+    "email": "aissatou.ndiaye@example.com",
+    "superficie": "350 m²",
+    "nature": "parcelle",
+    "situation": "Dakar, Grand-Yoff",
+    "coordonnees": {
+      "A": [
+        2488100.0,
+        1637400.0
+      ],
+      "B": [
+        2488105.0,
+        1637400.0
+      ],
+      "C": [
+        2488105.0,
+        1637405.0
+      ],
+      "D": [
+        2488100.0,
+        1637405.0
+      ]
+    },
+    "nicadAttribue": "2746089994547768",
+    "documents": [
+      {
+        "nom": "Carte_Nationale_Aissatou.pdf",
+        "type": "identite",
+        "contenu_base64": "Q2FydGUgTmF0aW9uYWxlIGVuY29kZWU="
+      },
+      {
+        "nom": "Justificatif_Occupation.pdf",
+        "type": "justificatif_occupation",
+        "contenu_base64": "SnVzdGlmaWNhdGlmIGQgb2NjdXBhdGlvbiBlbmNvZGU="
+      },
+      {
+        "nom": "Deliberation_56b0af7b.pdf",
+        "type": "deliberation",
+        "contenu_base64": "RMOJTElCw4lSQVRJT04KRGVtYW5kZXVyIDogQWlzc2F0b3UgTmRpYXllClRlcnJhaW4gOiBEYWthciwgR3JhbmQtWW9mZgpOSUNBRCA6IDI3NDYwODk5OTQ1NDc3Njg="
+      },
+      {
+        "nom": "Notification_Bail_BAIL-2025-5828.pdf",
+        "type": "deliberation",
+        "contenu_base64": "REdJRCDigJMgTm90aWZpY2F0aW9uIGRlIEJhaWwKCsOAIDogQWlzc2F0b3UgTmRpYXllClTDqWzDqXBob25lIDogNzcxMjM0NTY3Ck5JQ0FEIDogMjc0NjA4OTk5NDU0Nzc2OApTdXBlcmZpY2llIDogMzUwIG3CsgpPYmpldCA6IEF0dHJpYnV0aW9uIGTigJl1biBiYWlsIGFkbWluaXN0cmF0aWYgc3VyIGxlIHRlcnJhaW4gc2l0dcOpIMOgIERha2FyLCBHcmFuZC1Zb2ZmLgoKTGUgYmFpbCBwb3J0ZSBsZSBudW3DqXJvIEJBSUwtMjAyNS01ODI4LCB2YWxhYmxlIDMwIGFucywgYXZlYyB1biBjYW5vbiBhbm51ZWwgZGUgMTAgMDAwIEZDRkEuCkZhaXQgw6AgRGFrYXIsIGxlIDIwMjUtMDYtMTY="
+      }
+    ],
+    "historiqueStatuts": [
+      [
+        "2025-06-15T18:38:20.166419",
+        "demande_soumise"
+      ],
+      [
+        "2025-06-16T11:58:17.208077",
+        "instruction_locale"
+      ],
+      [
+        "2025-06-16T11:58:17.208085",
+        "attente_nicad"
+      ],
+      [
+        "2025-06-16T12:00:55.500521",
+        "nicad_valide"
+      ],
+      [
+        "2025-06-16T12:01:43.007949",
+        "deliberation_validee"
+      ],
+      [
+        "2025-06-16T12:02:19.362144",
+        "dossier_transmis_dgid"
+      ],
+      [
+        "2025-06-16T12:03:11.300713",
+        "bail_emis"
+      ],
+      [
+        "2025-06-16T12:09:42.854031",
+        "bail_inscrit"
+      ],
+      [
+        "2025-06-16T12:56:47.320736",
+        "instruction_locale"
+      ],
+      [
+        "2025-06-16T12:56:47.320747",
+        "attente_nicad"
+      ]
+    ],
+    "numeroBail": "BAIL-2025-5828",
+    "duree": "30 ans",
+    "canonAnnuel": "10 000 FCFA/an"
+  },
+  {
+    "id": "bca113d0-9cb4-4c97-88f2-3933374f66ee",
+    "dateSoumission": "2025-06-23T18:56:35.719047",
+    "statut": "bail_inscrit",
+    "nomComplet": "Mariama Diouf",
+    "telephone": "776543210",
+    "email": "mariama.diouf@example.com",
+    "superficie": "150 m²",
+    "nature": "parcelle",
+    "situation": "Rue 14, Quartier Malika, Dakar",
+    "coordonnees": {
+      "A": [
+        2488050.0,
+        1637350.0
+      ],
+      "B": [
+        2488060.0,
+        1637350.0
+      ],
+      "C": [
+        2488060.0,
+        1637360.0
+      ],
+      "D": [
+        2488050.0,
+        1637360.0
+      ]
+    },
+    "nicadAttribue": "3448823127677184",
+    "documents": [
+      {
+        "nom": "CNI_Mariama.pdf",
+        "type": "identite",
+        "contenu_base64": "U2ltdWxhdGlvbiBkdSBkb2N1bWVudCBFbnNvZGVk"
+      },
+      {
+        "nom": "Justificatif_Domicile.pdf",
+        "type": "justificatif_occupation",
+        "contenu_base64": "SmVzdGlmaWNhdGlmIGRlIGTDqW1lbnFnZSBibGFuYw=="
+      },
+      {
+        "nom": "Deliberation_bca113d0.pdf",
+        "type": "deliberation",
+        "contenu_base64": "RMOJTElCw4lSQVRJT04KRGVtYW5kZXVyIDogTWFyaWFtYSBEaW91ZgpUZXJyYWluIDogUnVlIDE0LCBRdWFydGllciBNYWxpa2EsIERha2FyCk5JQ0FEIDogMzQ0ODgyMzEyNzY3NzE4NA=="
+      },
+      {
+        "nom": "Notification_Bail_BAIL-2025-7769.pdf",
+        "type": "deliberation",
+        "contenu_base64": "REdJRCDigJMgTm90aWZpY2F0aW9uIGRlIEJhaWwKCsOAIDogTWFyaWFtYSBEaW91ZgpUw6lsw6lwaG9uZSA6IDc3NjU0MzIxMApOSUNBRCA6IDM0NDg4MjMxMjc2NzcxODQKU3VwZXJmaWNpZSA6IDE1MCBtwrIKT2JqZXQgOiBBdHRyaWJ1dGlvbiBk4oCZdW4gYmFpbCBhZG1pbmlzdHJhdGlmIHN1ciBsZSB0ZXJyYWluIHNpdHXDqSDDoCBSdWUgMTQsIFF1YXJ0aWVyIE1hbGlrYSwgRGFrYXIuCgpMZSBiYWlsIHBvcnRlIGxlIG51bcOpcm8gQkFJTC0yMDI1LTc3NjksIHZhbGFibGUgMzAgYW5zLCBhdmVjIHVuIGNhbm9uIGFubnVlbCBkZSAxMCAwMDAgRkNGQS4KRmFpdCDDoCBEYWthciwgbGUgMjAyNS0wNi0yNA=="
+      }
+    ],
+    "historiqueStatuts": [
+      [
+        "2025-06-23T18:56:35.719054",
+        "demande_soumise"
+      ],
+      [
+        "2025-06-24T14:13:30.991887",
+        "instruction_locale"
+      ],
+      [
+        "2025-06-24T14:13:30.991897",
+        "attente_nicad"
+      ],
+      [
+        "2025-06-24T14:14:49.606644",
+        "nicad_valide"
+      ],
+      [
+        "2025-06-24T14:16:33.069267",
+        "deliberation_validee"
+      ],
+      [
+        "2025-06-24T14:18:01.931828",
+        "dossier_transmis_dgid"
+      ],
+      [
+        "2025-06-24T14:23:41.177721",
+        "bail_emis"
+      ],
+      [
+        "2025-06-24T14:31:10.781206",
+        "bail_inscrit"
+      ]
+    ],
+    "numeroBail": "BAIL-2025-7769",
+    "duree": "30 ans",
+    "canonAnnuel": "10 000 FCFA/an"
+  }
 ]

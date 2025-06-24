@@ -6,6 +6,7 @@ from typing import List
 import base64
 
 from schema.mairie_schema import DemandeFonciereCreate, DemandeFonciere, StatutDemande
+from services.fichier_sync import ecrire_fichier
 
 # Chemin vers la base simulée des demandes citoyennes
 DATA_PATH = Path(__file__).resolve().parent.parent / "database" / "citizen_requests.json"
@@ -28,6 +29,9 @@ def serialiser_donnees(obj):
 def enregistrer_demandes(demandes: List[dict]):
     with open(DATA_PATH, "w", encoding="utf-8") as f:
         json.dump(demandes, f, ensure_ascii=False, indent=4, default=serialiser_donnees)
+        ecrire_fichier("citizen_requests.json", demandes)
+
+# Fonction pour soumettre une nouvelle demande foncière
 
 
 def soumettre_demande(payload: DemandeFonciereCreate) -> DemandeFonciere:
@@ -111,6 +115,7 @@ def traiter_instruction_locale(id_demande: str) -> bool:
 
     if demande_trouvee:
         enregistrer_demandes(demandes)
+        ecrire_fichier("citizen_requests.json", demandes) 
         return True
     return False
 
@@ -150,6 +155,7 @@ def generer_deliberation_simulee(id_demande: str) -> bool:
 
     if demande_trouvee:
         enregistrer_demandes(demandes)
+        ecrire_fichier("citizen_requests.json", demandes) 
         return True
     return False
 
@@ -183,5 +189,6 @@ def transmettre_dossier_dgid(id_demande: str) -> bool:
 
     if demande_trouvee:
         enregistrer_demandes(demandes)
+        ecrire_fichier("citizen_requests.json", demandes) 
         return True
     return False
