@@ -24,8 +24,8 @@ def include_all_routers(app: FastAPI):
     
 
 
-if not os.path.exists("database/citizen_requests.json"):
-    restaurer_fichier("citizen_requests.json")
-    
+# 🔁 Toujours recharger la dernière version synchronisée
+restaurer_fichier("citizen_requests.json")
+
 # ✅ Ajout de l’inclusion des routes
 include_all_routers(app)
