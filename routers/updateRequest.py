@@ -13,6 +13,7 @@ class ModificationDemande(BaseModel):
 @router.patch("/requests/{id}/mettreAJour")
 def mettre_a_jour_demande_depuis_front(id: str, modifications: Dict[str, Any]):
     demandes = lire_fichier("citizen_requests.json")
+    conservation_data = lire_fichier("conservation_data.json")
     demande_trouvee = False
 
     for demande in demandes:
@@ -21,15 +22,42 @@ def mettre_a_jour_demande_depuis_front(id: str, modifications: Dict[str, Any]):
             for champ, valeur in modifications.items():
                 demande[champ] = valeur
 
-            # Historisation automatique si "statut" est modifié
+            # Historisation du statut
             if "statut" in modifications:
+                nouveau_statut = modifications["statut"]
                 demande.setdefault("historiqueStatuts", []).append(
-                    (datetime.utcnow().isoformat(), modifications["statut"])
+                    (datetime.utcnow().isoformat(), nouveau_statut)
                 )
+
+                # ➕ Si bail émis → inscription au registre foncier
+                if nouveau_statut == "bail_emis":
+                    numero_bail = demande.get("bail", f"BAIL-{id[-4:].upper()}")
+                    nouveau_titre = {
+                        "numeroTitre": numero_bail,
+                        "nicad": demande.get("nicad", "Inconnu"),
+                        "designation": demande.get("designation", "Non précisée"),
+                        "situation": demande.get("situation", "Inconnue"),
+                        "superficie": demande.get("superficie", "Non précisée"),
+                        "proprietaireInscrit": demande.get("proprietaire", "Non précisé"),
+                        "modeAcquisition": "attribution",
+                        "dateInscription": datetime.utcnow().date().isoformat(),
+                        "nota": "Aucune remarque",
+                        "hypotheque": "Aucune",
+                        "coordonnees": demande.get("coordonnees", {})
+                    }
+
+                    conservation_data.append(nouveau_titre)
+                    ecrire_fichier("conservation_data.json", conservation_data)
+                    from services.supabase_sync import uploader_fichier
+                    uploader_fichier("conservation_data.json")
+
             break
 
     if not demande_trouvee:
         raise HTTPException(status_code=404, detail="Demande non trouvée")
 
     ecrire_fichier("citizen_requests.json", demandes)
+    from services.supabase_sync import uploader_fichier
+    uploader_fichier("citizen_requests.json")
+
     return {"message": "Demande mise à jour avec succès", "demande": demande}

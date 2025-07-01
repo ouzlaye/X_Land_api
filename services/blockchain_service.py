@@ -4,6 +4,9 @@ from uuid import uuid4
 from datetime import datetime
 from pathlib import Path
 from schema.blockchain_schema import BlockchainTransaction
+from services.fichier_sync import lire_fichier, ecrire_fichier
+from datetime import datetime
+
 
 BLOCKCHAIN_PATH = Path(__file__).resolve().parent.parent / "database" / "blockchain_log.json"
 
@@ -36,3 +39,14 @@ def certifier_transaction(numeroTitre: str, typeTransaction: str) -> BlockchainT
         json.dump(transactions, f, ensure_ascii=False, indent=4)
 
     return transaction
+
+
+
+def journaliser_transaction_blockchain(numero_titre: str, hash_block: str):
+    logs = lire_fichier("database/blockchain_log.json")
+    logs.append({
+        "titre": numero_titre,
+        "hash": hash_block,
+        "horodatage": datetime.utcnow().isoformat()
+    })
+    ecrire_fichier("blockchain_log.json", logs)

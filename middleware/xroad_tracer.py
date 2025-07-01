@@ -6,7 +6,7 @@ from datetime import datetime
 from pathlib import Path
 
 # Chemin vers le fichier de journalisation X-Road simulé
-LOG_PATH = Path(__file__).resolve().parent.parent / "logs" / "xroad_logs.jsonl"
+LOG_PATH = Path(__file__).resolve().parent.parent / "logs" / "xroad_logs.json"
 LOG_PATH.parent.mkdir(exist_ok=True)
 
 # Fonction pour ajouter un log structuré à un fichier .jsonl
@@ -39,3 +39,6 @@ async def xroad_tracer_middleware(request: Request, call_next):
         log_transaction(request, body, response.status_code)
 
     return response
+
+
+

@@ -8,6 +8,8 @@ from schema.mairie_schema import StatutDemande
 from services.mairie_service import charger_demandes_existantes, enregistrer_demandes
 from typing import List
 from services.blockchain_service import certifier_transaction
+from services.fichier_sync import lire_fichier, ecrire_fichier
+from datetime import datetime
 # Chemin vers la base simulée
 DATA_PATH = Path(__file__).resolve().parent.parent / "database" / "conservation_data.json"
 
@@ -101,3 +103,10 @@ def charger_titres_fonciers() -> List[dict]:
         return []
     with open(DATA_PATH, "r", encoding="utf-8") as f:
         return json.load(f)
+
+
+def enregistrer_evenement_conservation(event: dict):
+    logs = lire_fichier("conservation_data.json")
+    event["horodatage"] = datetime.utcnow().isoformat()
+    logs.append(event)
+    ecrire_fichier("database/conservation_data.json", logs)

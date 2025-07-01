@@ -14,9 +14,9 @@ def include_all_routers(app: FastAPI):
     app.include_router(mairie.router, prefix="/api", tags=["Mairie"])
     app.include_router(conservation.router, prefix="/api", tags=["Conservation Foncière"])
     # app.include_router(blockchain.router, prefix="/api", tags=["Blockchain PoC"])
-    app.include_router(logs.router, prefix="/api", tags=["X-Road Logs"])
-    app.include_router(procedure.router, prefix="/api", tags=["Procédure Demande D'attribution Foncière"])
-    app.include_router(hypotheque.router, prefix="/api", tags=["Hypothèque"])
+   # app.include_router(logs.router, prefix="/api", tags=["X-Road Logs"])
+   # app.include_router(procedure.router, prefix="/api", tags=["Procédure Demande D'attribution Foncière"])
+    #app.include_router(hypotheque.router, prefix="/api", tags=["Hypothèque"])
     # app.include_router.demande.router, prefix="/api", tags=["Demande Citoyenne"])
     app.include_router(demande.router, prefix="/api", tags=["Retourne toutes les Demandes"])
     #mise a jours des statut
@@ -29,6 +29,7 @@ def include_all_routers(app: FastAPI):
 
 # 🔁 Toujours recharger la dernière version synchronisée
 restaurer_fichier("citizen_requests.json")
+restaurer_fichier("conservation_data.json")
 
 # ✅ Ajout de l’inclusion des routes
 include_all_routers(app)

@@ -91,7 +91,7 @@
   {
     "id": "56b0af7b-23b9-4386-870b-7b10bd2506c5",
     "dateSoumission": "2025-06-15T18:38:20.166406",
-    "statut": "attente_nicad",
+    "statut": "nicad_valide",
     "nomComplet": "Aissatou Ndiaye",
     "telephone": "771234567",
     "email": "aissatou.ndiaye@example.com",
@@ -116,7 +116,7 @@
         1637405.0
       ]
     },
-    "nicadAttribue": "2746089994547768",
+    "nicadAttribue": "1751196745129930",
     "documents": [
       {
         "nom": "Carte_Nationale_Aissatou.pdf",
@@ -179,6 +179,14 @@
       [
         "2025-06-16T12:56:47.320747",
         "attente_nicad"
+      ],
+      [
+        "2025-06-29T11:36:38.012Z",
+        "nicad_valide"
+      ],
+      [
+        "2025-06-29T11:36:47.201695",
+        "nicad_valide"
       ]
     ],
     "numeroBail": "BAIL-2025-5828",
@@ -277,7 +285,7 @@
   {
     "id": "2ee9c626-bcdd-4977-a94f-429f19be6562",
     "dateSoumission": "2025-06-26T19:24:11.891527",
-    "statut": "demande_soumise",
+    "statut": "dossier_transmis_dgid",
     "nomComplet": "Rokhaya Ndiaye",
     "telephone": "88888888888",
     "email": "cheikh@email.com",
@@ -302,7 +310,7 @@
         -17.44559427549124
       ]
     },
-    "nicadAttribue": null,
+    "nicadAttribue": "1751197006558658",
     "documents": [
       {
         "nom": "CNI_Rokhaya.pdf",
@@ -319,13 +327,49 @@
       [
         "2025-06-26T19:24:11.891538",
         "demande_soumise"
+      ],
+      [
+        "2025-06-29T11:16:22.994Z",
+        "attente_nicad"
+      ],
+      [
+        "2025-06-29T11:16:24.965178",
+        "attente_nicad"
+      ],
+      [
+        "2025-06-29T11:36:47.693Z",
+        "nicad_valide"
+      ],
+      [
+        "2025-06-29T11:36:56.680015",
+        "nicad_valide"
+      ],
+      [
+        "2025-06-29T11:42:58.874Z",
+        "dossier_transmis_dgid"
+      ],
+      [
+        "2025-06-29T11:43:07.916102",
+        "dossier_transmis_dgid"
+      ],
+      [
+        "2025-06-29T15:51:33.836Z",
+        "bail_emis"
+      ],
+      [
+        "2025-06-29T15:51:39.383Z",
+        "bail_inscrit"
       ]
-    ]
+    ],
+    "numeroBail": "BAIL-08168094",
+    "duree": "99",
+    "canonAnnuel": "5000",
+    "observationsDGID": "Ras "
   },
   {
     "id": "d028e267-b1cc-4ca8-ad08-05e213b0a061",
     "dateSoumission": "2025-06-26T19:40:47.925952",
-    "statut": "instruction_locale",
+    "statut": "dossier_transmis_dgid",
     "nomComplet": "Modou Fall",
     "telephone": "999999999999",
     "email": "modou@email.com",
@@ -350,7 +394,7 @@
         -17.44561557359202
       ]
     },
-    "nicadAttribue": null,
+    "nicadAttribue": "1751197250625628",
     "documents": [
       {
         "nom": "20.jpg",
@@ -360,13 +404,203 @@
     ],
     "historiqueStatuts": [
       [
-        "2025-06-26T19:40:47.925960",
+        "2025-06-27T18:37:10.726367",
+        "attente_nicad"
+      ],
+      [
+        "2025-06-29T11:40:51.544Z",
+        "nicad_valide"
+      ],
+      [
+        "2025-06-29T11:41:00.524093",
+        "nicad_valide"
+      ],
+      [
+        "2025-06-29T15:31:38.271Z",
+        "dossier_transmis_dgid"
+      ],
+      [
+        "2025-06-29T15:31:39.275812",
+        "dossier_transmis_dgid"
+      ],
+      [
+        "2025-06-29T15:32:27.782Z",
+        "bail_emis"
+      ]
+    ],
+    "additionalProp1": {},
+    "numeroBail": "BAIL-36150119",
+    "duree": "99",
+    "canonAnnuel": "50000",
+    "observationsDGID": "ras"
+  },
+  {
+    "id": "c95127cf-95a6-43c2-881f-0d1bdea0257f",
+    "dateSoumission": "2025-06-29T17:07:35.673771",
+    "statut": "demande_soumise",
+    "nomComplet": "Cheikh T.",
+    "telephone": "778008080",
+    "email": "cheikh@gmail.com",
+    "superficie": "400",
+    "nature": "parcelle",
+    "situation": "Thies",
+    "coordonnees": {
+      "A": [
+        14.699888450554798,
+        -17.445131291662623
+      ],
+      "B": [
+        14.699419236797342,
+        -17.44480877732007
+      ],
+      "C": [
+        14.699751268838556,
+        -17.445634800053924
+      ],
+      "D": [
+        14.699336161685517,
+        -17.44518421556926
+      ]
+    },
+    "nicadAttribue": null,
+    "documents": [
+      {
+        "nom": "1000000018.jpg",
+        "type": "justificatif_occupation",
+        "contenu_base64": "Contenu du fichier 1000000018.jpg"
+      }
+    ],
+    "historiqueStatuts": [
+      [
+        "2025-06-29T17:07:35.673777",
+        "demande_soumise"
+      ]
+    ]
+  },
+  {
+    "id": "71b511fc-954d-4ba5-a28b-a0c3860aa624",
+    "dateSoumission": "2025-06-29T22:59:47.668396",
+    "statut": "demande_soumise",
+    "nomComplet": "Ndiogou MBODJ",
+    "telephone": "775356666",
+    "email": "mistermbodj@gmail.com",
+    "superficie": "300",
+    "nature": "parcelle",
+    "situation": "Thiès",
+    "coordonnees": {
+      "A": [
+        14.78572550746021,
+        -16.926263931212524
+      ],
+      "B": [
+        14.787048890845432,
+        -16.92593987302244
+      ],
+      "C": [
+        14.78663255248774,
+        -16.925283203498182
+      ],
+      "D": [
+        14.785620619051999,
+        -16.92544832585413
+      ]
+    },
+    "nicadAttribue": null,
+    "documents": [
+      {
+        "nom": "1001769481.jpg",
+        "type": "justificatif_occupation",
+        "contenu_base64": "Contenu du fichier 1001769481.jpg"
+      }
+    ],
+    "historiqueStatuts": [
+      [
+        "2025-06-29T22:59:47.668405",
+        "demande_soumise"
+      ]
+    ]
+  },
+  {
+    "id": "0da5588d-e913-4784-aff7-b4242ca9fbb7",
+    "dateSoumission": "2025-06-30T10:33:21.222900",
+    "statut": "dossier_transmis_dgid",
+    "nomComplet": "Ousseynou DIOP",
+    "telephone": "777125114",
+    "email": "ousey01@gmail.com",
+    "superficie": "150",
+    "nature": "parcelle",
+    "situation": "Malika quartier xisga",
+    "coordonnees": {
+      "A": [
+        14.697609543160537,
+        -17.451490846330817
+      ],
+      "B": [
+        14.697314434131496,
+        -17.451526991291566
+      ],
+      "C": [
+        14.697469982434672,
+        -17.451173315834023
+      ],
+      "D": [
+        14.697272954565287,
+        -17.451194750710236
+      ]
+    },
+    "nicadAttribue": "1751293325886274",
+    "documents": [
+      {
+        "nom": "IMG-20250516-WA0007.jpg",
+        "type": "justificatif_occupation",
+        "contenu_base64": "Contenu du fichier IMG-20250516-WA0007.jpg"
+      }
+    ],
+    "historiqueStatuts": [
+      [
+        "2025-06-30T10:33:21.222908",
         "demande_soumise"
       ],
       [
-        "2025-06-27T18:28:23.724860",
+        "2025-06-30T10:50:52.486Z",
         "instruction_locale"
+      ],
+      [
+        "2025-06-30T10:50:53.486Z",
+        "attente_nicad"
+      ],
+      [
+        "2025-06-30T10:50:55.751085",
+        "attente_nicad"
+      ],
+      [
+        "2025-06-30T14:22:18.545Z",
+        "nicad_valide"
+      ],
+      [
+        "2025-06-30T14:22:19.182656",
+        "nicad_valide"
+      ],
+      [
+        "2025-06-30T18:44:46.261Z",
+        "dossier_transmis_dgid"
+      ],
+      [
+        "2025-06-30T18:44:47.697075",
+        "dossier_transmis_dgid"
+      ],
+      [
+        "2025-06-30T18:46:38.356Z",
+        "bail_emis"
+      ],
+      [
+        "2025-06-30T18:46:44.533Z",
+        "bail_inscrit"
       ]
-    ]
+    ],
+    "numeroBail": "BAIL-45539651",
+    "duree": "90",
+    "canonAnnuel": "5000",
+    "observationsDGID": "Neant"
   }
 ]

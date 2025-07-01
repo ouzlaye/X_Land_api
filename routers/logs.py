@@ -25,3 +25,4 @@ def lire_logs_xroad():
                 continue
 
     return {"logs": logs}
+
