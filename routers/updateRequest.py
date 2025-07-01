@@ -29,21 +29,30 @@ def mettre_a_jour_demande_depuis_front(id: str, modifications: Dict[str, Any]):
                     (datetime.utcnow().isoformat(), nouveau_statut)
                 )
 
-                # ➕ Si bail émis → inscription au registre foncier
-                if nouveau_statut == "bail_emis":
-                    numero_bail = demande.get("bail", f"BAIL-{id[-4:].upper()}")
+            # 🔍 Vérifie si bail_inscrit est présent dans l’historique
+            historique = [statut for _, statut in demande.get("historiqueStatuts", [])]
+            bail_inscrit_present = "bail_inscrit" in historique
+
+            if bail_inscrit_present:
+                numero_bail = demande.get("bail", f"BAIL-{id[-4:].upper()}")
+
+                # Vérifie que le bail n’est pas déjà inscrit
+                deja_inscrit = any(t["numeroTitre"] == numero_bail for t in conservation_data)
+
+                if not deja_inscrit:
                     nouveau_titre = {
                         "numeroTitre": numero_bail,
-                        "nicad": demande.get("nicad", "Inconnu"),
-                        "designation": demande.get("designation", "Non précisée"),
+                        "nicad": demande.get("nicadAttribue", "Inconnu"),
+                        "designation": demande.get("nature", "Non précisée"),
                         "situation": demande.get("situation", "Inconnue"),
                         "superficie": demande.get("superficie", "Non précisée"),
-                        "proprietaireInscrit": demande.get("proprietaire", "Non précisé"),
+                        "proprietaireInscrit": demande.get("nomComplet", "Non précisé"),
                         "modeAcquisition": "attribution",
                         "dateInscription": datetime.utcnow().date().isoformat(),
                         "nota": "Aucune remarque",
                         "hypotheque": "Aucune",
-                        "coordonnees": demande.get("coordonnees", {})
+                        "coordonnees": demande.get("coordonnees", {}),
+                        "canonAnnuel": demande.get("canonAnnuel", "sansn objet")
                     }
 
                     conservation_data.append(nouveau_titre)
@@ -61,3 +70,4 @@ def mettre_a_jour_demande_depuis_front(id: str, modifications: Dict[str, Any]):
     uploader_fichier("citizen_requests.json")
 
     return {"message": "Demande mise à jour avec succès", "demande": demande}
+

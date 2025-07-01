@@ -480,7 +480,7 @@
   {
     "id": "71b511fc-954d-4ba5-a28b-a0c3860aa624",
     "dateSoumission": "2025-06-29T22:59:47.668396",
-    "statut": "demande_soumise",
+    "statut": "dossier_transmis_dgid",
     "nomComplet": "Ndiogou MBODJ",
     "telephone": "775356666",
     "email": "mistermbodj@gmail.com",
@@ -505,7 +505,7 @@
         -16.92544832585413
       ]
     },
-    "nicadAttribue": null,
+    "nicadAttribue": "1751371195273201",
     "documents": [
       {
         "nom": "1001769481.jpg",
@@ -517,8 +517,48 @@
       [
         "2025-06-29T22:59:47.668405",
         "demande_soumise"
+      ],
+      [
+        "2025-07-01T11:58:50.460Z",
+        "instruction_locale"
+      ],
+      [
+        "2025-07-01T11:58:51.460Z",
+        "attente_nicad"
+      ],
+      [
+        "2025-07-01T11:58:52.823625",
+        "attente_nicad"
+      ],
+      [
+        "2025-07-01T12:00:03.367Z",
+        "nicad_valide"
+      ],
+      [
+        "2025-07-01T12:00:05.349176",
+        "nicad_valide"
+      ],
+      [
+        "2025-07-01T12:03:15.989Z",
+        "dossier_transmis_dgid"
+      ],
+      [
+        "2025-07-01T12:03:18.026077",
+        "dossier_transmis_dgid"
+      ],
+      [
+        "2025-07-01T12:04:24.943Z",
+        "bail_emis"
+      ],
+      [
+        "2025-07-01T12:04:31.352Z",
+        "bail_inscrit"
       ]
-    ]
+    ],
+    "numeroBail": "BAIL-34620113",
+    "duree": "99",
+    "canonAnnuel": "10000",
+    "observationsDGID": "Neant"
   },
   {
     "id": "0da5588d-e913-4784-aff7-b4242ca9fbb7",
