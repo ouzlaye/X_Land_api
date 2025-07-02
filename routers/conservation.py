@@ -6,7 +6,7 @@ from services.fichier_sync import lire_fichier
 router = APIRouter()
 
 
-@router.get("/verifierTitre", tags=["Vérification"])
+@router.get("/verifierTitre", summary="Vérification de l’état de droit réel d’un titre")
 def verifier_titre(
     identifiant: str = Query(..., description="Numéro de bail, de titre foncier ou NICAD")
 ):
