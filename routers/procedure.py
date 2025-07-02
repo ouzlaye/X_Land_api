@@ -7,11 +7,11 @@ from services.conservation_service import inscrire_bail_au_registre
 
 router = APIRouter()
 
-@router.post("/requests/{id}/traiterInstruction")
+"""@router.post("/requests/{id}/traiterInstruction")
 def traiter_instruction(id: str):
     if not traiter_instruction_locale(id):
         raise HTTPException(status_code=404, detail="Demande introuvable ou statut invalide")
-    return {"message": "Instruction locale validée → En attente NICAD"}
+    return {"message": "Instruction locale validée → En attente NICAD"}"""
 
 @router.post("/requests/{id}/simulerCadastre")
 def simuler_cadastre(id: str):
@@ -19,7 +19,7 @@ def simuler_cadastre(id: str):
         raise HTTPException(status_code=404, detail="Demande invalide ou déjà traitée")
     return {"message": "Réponse du cadastre simulée (NICAD attribué ou refusé)"}
 
-@router.post("/requests/{id}/genererDeliberation")
+"""@router.post("/requests/{id}/genererDeliberation")
 def generer_deliberation(id: str):
     if not generer_deliberation_simulee(id):
         raise HTTPException(status_code=400, detail="Impossible de générer la délibération")
@@ -39,12 +39,12 @@ def emettre_bail(id: str):
 
 @router.post("/requests/{id}/inscrireBail", summary="Inscription et certification foncière via blockchain")
 def inscrire_bail(id: str):
-    """
-    Inscrit un bail dans le registre foncier et certifie immédiatement la transaction via blockchain.
-    Retourne le numéro de titre foncier et son hash blockchain.
-    """
+    
+    #Inscrit un bail dans le registre foncier et certifie immédiatement la transaction via blockchain.
+    #Retourne le numéro de titre foncier et son hash blockchain.
+
     result = inscrire_bail_au_registre(id)
     if not result["numeroTitre"]:
         raise HTTPException(status_code=400, detail=result["message"])
 
-    return result
+    return result"""

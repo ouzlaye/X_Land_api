@@ -33,7 +33,6 @@ def enregistrer_demandes(demandes: List[dict]):
 
 # Fonction pour soumettre une nouvelle demande foncière
 
-
 def soumettre_demande(payload: DemandeFonciereCreate) -> DemandeFonciere:
     demandes = charger_demandes_existantes()
 

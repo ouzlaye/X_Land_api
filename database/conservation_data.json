@@ -1,212 +1,243 @@
 [
-    {
-        "numeroTitre": "TF-0001",
-        "nicad": "0123011300100428",
-        "designation": "Terrain urbain",
-        "situation": "Dakar-Banlieue, à 1 km au sud-ouest du village de Malika",
-        "superficie": "350 m²",
-        "proprietaireInscrit": "État du Sénégal",
-        "modeAcquisition": "Immatriculation",
-        "dateInscription": "2019-04-23",
-        "nota": "Pas d’hypothèque",
-        "hypotheque": "Aucune",
-        "coordonnees": {
-            "A": [
-                2487701.55,
-                1637459.91
-            ],
-            "B": [
-                248715.31,
-                1637453.94
-            ],
-            "C": [
-                248711.33,
-                1637444.77
-            ],
-            "D": [
-                248697.57,
-                1637450.74
-            ]
-        }
-    },
-    {
-        "numeroTitre": "TF-0002",
-        "nicad": "0302112300200991",
-        "designation": "Terrain agricole",
-        "situation": "Région de Fatick, Niakhar",
-        "superficie": "1200 m²",
-        "proprietaireInscrit": "Société AgriSud",
-        "modeAcquisition": "Vente notariale",
-        "dateInscription": "2022-06-12",
-        "nota": "Hypothèque partielle au profit de BHS",
-        "hypotheque": "Aucune",
-        "coordonnees": {
-            "A": [
-                2470000.0,
-                1637000.0
-            ],
-            "B": [
-                2470100.0,
-                1637000.0
-            ],
-            "C": [
-                2470100.0,
-                1637100.0
-            ],
-            "D": [
-                2470000.0,
-                1637100.0
-            ]
-        }
-    },
-    {
-        "numeroTitre": "TF-0093",
-        "nicad": "0302211100300456",
-        "designation": "Terrain affecté à usage d’habitation",
-        "situation": "Keur Massar Extension, zone lotie",
-        "superficie": "400 m²",
-        "proprietaireInscrit": "M. Aliou Sarr",
-        "modeAcquisition": "Bail administratif",
-        "dateInscription": "2025-07-10",
-        "nota": "Délibération 2025/03 approuvée – bail émis par DGID",
-        "hypotheque": "Aucune",
-        "coordonnees": {
-            "A": [
-                2488100.0,
-                1637500.0
-            ],
-            "B": [
-                2488105.0,
-                1637500.0
-            ],
-            "C": [
-                2488105.0,
-                1637505.0
-            ],
-            "D": [
-                2488100.0,
-                1637505.0
-            ]
-        }
-    },
-    {
-        "numeroTitre": "TF-2487",
-        "nicad": "6994105899857061",
-        "designation": "Terrain à usage d’habitation",
-        "situation": "Yoff, près de la plage BCEAO",
-        "superficie": "400 m²",
-        "proprietaireInscrit": "Mamadou Faye",
-        "modeAcquisition": "Bail administratif",
-        "dateInscription": "2025-06-14",
-        "nota": "Bail attribué sous le n° BAIL-2025-9042",
-        "hypotheque": "Aucune",
-        "coordonnees": {
-            "A": [
-                2488110.0,
-                1637500.0
-            ],
-            "B": [
-                2488115.0,
-                1637500.0
-            ],
-            "C": [
-                2488115.0,
-                1637505.0
-            ],
-            "D": [
-                2488110.0,
-                1637505.0
-            ]
-        }
-    },
-    {
-        "numeroTitre": "TF-3007",
-        "nicad": "2746089994547768",
-        "designation": "Terrain à usage d’habitation",
-        "situation": "Dakar, Grand-Yoff",
-        "superficie": "350 m²",
-        "proprietaireInscrit": "Aissatou Ndiaye",
-        "modeAcquisition": "Bail administratif",
-        "dateInscription": "2025-06-16",
-        "nota": "Bail attribué sous le n° BAIL-2025-5828",
-        "hypotheque": "Aucune",
-        "coordonnees": {
-            "A": [
-                2488100.0,
-                1637400.0
-            ],
-            "B": [
-                2488105.0,
-                1637400.0
-            ],
-            "C": [
-                2488105.0,
-                1637405.0
-            ],
-            "D": [
-                2488100.0,
-                1637405.0
-            ]
-        }
-    },
-    {
-        "numeroTitre": "TF-3143",
-        "nicad": "3448823127677184",
-        "designation": "Terrain à usage d’habitation",
-        "situation": "Rue 14, Quartier Malika, Dakar",
-        "superficie": "150 m²",
-        "proprietaireInscrit": "Mariama Diouf",
-        "modeAcquisition": "Bail administratif",
-        "dateInscription": "2025-06-24",
-        "nota": "Bail attribué sous le n° BAIL-2025-7769",
-        "hypotheque": "Aucune",
-        "coordonnees": {
-            "A": [
-                2488050.0,
-                1637350.0
-            ],
-            "B": [
-                2488060.0,
-                1637350.0
-            ],
-            "C": [
-                2488060.0,
-                1637360.0
-            ],
-            "D": [
-                2488050.0,
-                1637360.0
-            ]
-        }
-    },
-    {
-        "numeroTitre": "TF-2406",
-        "nicad": "3448823127677184",
-        "designation": "Terrain à usage d’habitation",
-        "situation": "Rue 14, Quartier Malika, Dakar",
-        "superficie": "150 m²",
-        "proprietaireInscrit": "Mariama Diouf",
-        "modeAcquisition": "Bail administratif",
-        "dateInscription": "2025-06-24",
-        "nota": "Bail attribué sous le n° BAIL-2025-7769",
-        "hypotheque": "Aucune",
-        "coordonnees": {
-            "A": [
-                2488050.0,
-                1637350.0
-            ],
-            "B": [
-                2488060.0,
-                1637350.0
-            ],
-            "C": [
-                2488060.0,
-                1637360.0
-            ],
-            "D": [
-                2488050.0,
-                1637360.0
-            ]
-        }
+  {
+    "numeroTitre": "TF-0001",
+    "nicad": "0123011300100428",
+    "designation": "Terrain urbain",
+    "situation": "Dakar-Banlieue, à 1 km au sud-ouest du village de Malika",
+    "superficie": "350 m²",
+    "proprietaireInscrit": "État du Sénégal",
+    "modeAcquisition": "Immatriculation",
+    "dateInscription": "2019-04-23",
+    "nota": "Pas d’hypothèque",
+    "hypotheque": "Aucune",
+    "coordonnees": {
+      "A": [
+        2487701.55,
+        1637459.91
+      ],
+      "B": [
+        248715.31,
+        1637453.94
+      ],
+      "C": [
+        248711.33,
+        1637444.77
+      ],
+      "D": [
+        248697.57,
+        1637450.74
+      ]
     }
+  },
+  {
+    "numeroTitre": "TF-0002",
+    "nicad": "0302112300200991",
+    "designation": "Terrain agricole",
+    "situation": "Région de Fatick, Niakhar",
+    "superficie": "1200 m²",
+    "proprietaireInscrit": "Société AgriSud",
+    "modeAcquisition": "Vente notariale",
+    "dateInscription": "2022-06-12",
+    "nota": "Hypothèque partielle au profit de BHS",
+    "hypotheque": "Aucune",
+    "coordonnees": {
+      "A": [
+        2470000.0,
+        1637000.0
+      ],
+      "B": [
+        2470100.0,
+        1637000.0
+      ],
+      "C": [
+        2470100.0,
+        1637100.0
+      ],
+      "D": [
+        2470000.0,
+        1637100.0
+      ]
+    }
+  },
+  {
+    "numeroTitre": "TF-0093",
+    "nicad": "0302211100300456",
+    "designation": "Terrain affecté à usage d’habitation",
+    "situation": "Keur Massar Extension, zone lotie",
+    "superficie": "400 m²",
+    "proprietaireInscrit": "M. Aliou Sarr",
+    "modeAcquisition": "Bail administratif",
+    "dateInscription": "2025-07-10",
+    "nota": "Délibération 2025/03 approuvée – bail émis par DGID",
+    "hypotheque": "Aucune",
+    "coordonnees": {
+      "A": [
+        2488100.0,
+        1637500.0
+      ],
+      "B": [
+        2488105.0,
+        1637500.0
+      ],
+      "C": [
+        2488105.0,
+        1637505.0
+      ],
+      "D": [
+        2488100.0,
+        1637505.0
+      ]
+    }
+  },
+  {
+    "numeroTitre": "TF-2487",
+    "nicad": "6994105899857061",
+    "designation": "Terrain à usage d’habitation",
+    "situation": "Yoff, près de la plage BCEAO",
+    "superficie": "400 m²",
+    "proprietaireInscrit": "Mamadou Faye",
+    "modeAcquisition": "Bail administratif",
+    "dateInscription": "2025-06-14",
+    "nota": "Bail attribué sous le n° BAIL-2025-9042",
+    "hypotheque": "Aucune",
+    "coordonnees": {
+      "A": [
+        2488110.0,
+        1637500.0
+      ],
+      "B": [
+        2488115.0,
+        1637500.0
+      ],
+      "C": [
+        2488115.0,
+        1637505.0
+      ],
+      "D": [
+        2488110.0,
+        1637505.0
+      ]
+    }
+  },
+  {
+    "numeroTitre": "TF-3007",
+    "nicad": "2746089994547768",
+    "designation": "Terrain à usage d’habitation",
+    "situation": "Dakar, Grand-Yoff",
+    "superficie": "350 m²",
+    "proprietaireInscrit": "Aissatou Ndiaye",
+    "modeAcquisition": "Bail administratif",
+    "dateInscription": "2025-06-16",
+    "nota": "Bail attribué sous le n° BAIL-2025-5828",
+    "hypotheque": "Aucune",
+    "coordonnees": {
+      "A": [
+        2488100.0,
+        1637400.0
+      ],
+      "B": [
+        2488105.0,
+        1637400.0
+      ],
+      "C": [
+        2488105.0,
+        1637405.0
+      ],
+      "D": [
+        2488100.0,
+        1637405.0
+      ]
+    }
+  },
+  {
+    "numeroTitre": "TF-3143",
+    "nicad": "3448823127677184",
+    "designation": "Terrain à usage d’habitation",
+    "situation": "Rue 14, Quartier Malika, Dakar",
+    "superficie": "150 m²",
+    "proprietaireInscrit": "Mariama Diouf",
+    "modeAcquisition": "Bail administratif",
+    "dateInscription": "2025-06-24",
+    "nota": "Bail attribué sous le n° BAIL-2025-7769",
+    "hypotheque": "Aucune",
+    "coordonnees": {
+      "A": [
+        2488050.0,
+        1637350.0
+      ],
+      "B": [
+        2488060.0,
+        1637350.0
+      ],
+      "C": [
+        2488060.0,
+        1637360.0
+      ],
+      "D": [
+        2488050.0,
+        1637360.0
+      ]
+    }
+  },
+  {
+    "numeroTitre": "TF-2406",
+    "nicad": "3448823127677184",
+    "designation": "Terrain à usage d’habitation",
+    "situation": "Rue 14, Quartier Malika, Dakar",
+    "superficie": "150 m²",
+    "proprietaireInscrit": "Mariama Diouf",
+    "modeAcquisition": "Bail administratif",
+    "dateInscription": "2025-06-24",
+    "nota": "Bail attribué sous le n° BAIL-2025-7769",
+    "hypotheque": "Aucune",
+    "coordonnees": {
+      "A": [
+        2488050.0,
+        1637350.0
+      ],
+      "B": [
+        2488060.0,
+        1637350.0
+      ],
+      "C": [
+        2488060.0,
+        1637360.0
+      ],
+      "D": [
+        2488050.0,
+        1637360.0
+      ]
+    }
+  },
+  {
+    "numeroTitre": "BAIL-F851",
+    "nicad": "1751376041294608",
+    "designation": "parcelle",
+    "situation": "Sangalkam quartier fictif",
+    "superficie": "150",
+    "proprietaireInscrit": "Nogaye NDIAYE",
+    "modeAcquisition": "attribution",
+    "dateInscription": "2025-07-01",
+    "nota": "Aucune remarque",
+    "hypotheque": "Aucune",
+    "coordonnees": {
+      "A": [
+        14.773692100758856,
+        -17.236510245488272
+      ],
+      "B": [
+        14.773163028581264,
+        -17.236456846223
+      ],
+      "C": [
+        14.773359987826593,
+        -17.235803082498425
+      ],
+      "D": [
+        14.774023428181298,
+        -17.23602814869868
+      ]
+    },
+    "canonAnnuel": "10000"
+  }
 ]

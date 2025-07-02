@@ -1,24 +1,36 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Query
 from schema.conservation_schema import VerifyTitleRequest, TitleFoncierModel
 from services.conservation_service import rechercher_titre_foncier
+from services.fichier_sync import lire_fichier
 
 router = APIRouter()
 
-@router.post("/verifyTitle", response_model=dict, summary="Vérifie un titre foncier par NICAD ou numéro")
-def verify_title(payload: VerifyTitleRequest):
-    """
-    Recherche un titre foncier dans le registre simulé.
-    Accepte en entrée soit un numeroTitre, soit un nicad (16 chiffres).
-    """
-    titre = rechercher_titre_foncier(numeroTitre=payload.numeroTitre, nicad=payload.nicad)
 
-    if not titre:
-        return {
-            "status": "not_found",
-            "message": "Aucun titre foncier correspondant."
-        }
+@router.get("/verifierTitre", tags=["Vérification"])
+def verifier_titre(
+    identifiant: str = Query(..., description="Numéro de bail, de titre foncier ou NICAD")
+):
+    titres = lire_fichier("conservation_data.json")
 
-    return {
-        "status": "found",
-        "data": titre.dict()
-    }
+    # Recherche souple selon le type d’identifiant
+    for titre in titres:
+        if (
+            identifiant.strip() == titre.get("numeroTitre") or
+            identifiant.strip() == titre.get("nicad")
+        ):
+            return {
+                "numeroTitre": titre["numeroTitre"],
+                "nicad": titre["nicad"],
+                "proprietaireInscrit": titre["proprietaireInscrit"],
+                "designation": titre["designation"],
+                "situation": titre["situation"],
+                "superficie": titre["superficie"],
+                "coordonnees": titre.get("coordonnees", {}),
+                "modeAcquisition": titre["modeAcquisition"],
+                "dateInscription": titre["dateInscription"],
+                "hypotheque": titre["hypotheque"],
+                "nota": titre["nota"],
+                "source": "registre_foncier_simulé"
+            }
+
+    raise HTTPException(status_code=404, detail="Aucun titre correspondant trouvé.")

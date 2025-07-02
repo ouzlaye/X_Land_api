@@ -642,5 +642,88 @@
     "duree": "90",
     "canonAnnuel": "5000",
     "observationsDGID": "Neant"
+  },
+  {
+    "id": "b6a85597-7bfa-4e79-af07-1fa3a945f851",
+    "dateSoumission": "2025-07-01T13:04:56.050253",
+    "statut": "dossier_transmis_dgid",
+    "nomComplet": "Nogaye NDIAYE",
+    "telephone": "775156311",
+    "email": "nogaye.ndiaye@gmail.com",
+    "superficie": "150",
+    "nature": "parcelle",
+    "situation": "Sangalkam quartier fictif",
+    "coordonnees": {
+      "A": [
+        14.773692100758856,
+        -17.236510245488272
+      ],
+      "B": [
+        14.773163028581264,
+        -17.236456846223
+      ],
+      "C": [
+        14.773359987826593,
+        -17.235803082498425
+      ],
+      "D": [
+        14.774023428181298,
+        -17.23602814869868
+      ]
+    },
+    "nicadAttribue": "1751376041294608",
+    "documents": [
+      {
+        "nom": "IMG-20250630-WA0019.jpg",
+        "type": "justificatif_occupation",
+        "contenu_base64": "Contenu du fichier IMG-20250630-WA0019.jpg"
+      }
+    ],
+    "historiqueStatuts": [
+      [
+        "2025-07-01T13:04:56.050260",
+        "demande_soumise"
+      ],
+      [
+        "2025-07-01T13:17:57.102Z",
+        "instruction_locale"
+      ],
+      [
+        "2025-07-01T13:17:58.102Z",
+        "attente_nicad"
+      ],
+      [
+        "2025-07-01T13:17:59.380706",
+        "attente_nicad"
+      ],
+      [
+        "2025-07-01T13:20:43.458Z",
+        "nicad_valide"
+      ],
+      [
+        "2025-07-01T13:20:45.513206",
+        "nicad_valide"
+      ],
+      [
+        "2025-07-01T13:21:46.868Z",
+        "dossier_transmis_dgid"
+      ],
+      [
+        "2025-07-01T13:21:49.547177",
+        "dossier_transmis_dgid"
+      ],
+      [
+        "2025-07-01T13:23:55.346Z",
+        "bail_emis"
+      ],
+      [
+        "2025-07-01T13:24:01.524Z",
+        "bail_inscrit"
+      ]
+    ],
+    "numeroBail": "BAIL-99744684",
+    "duree": "90",
+    "canonAnnuel": "10000",
+    "observationsDGID": "Neant"
   }
 ]
