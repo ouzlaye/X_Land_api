@@ -2,25 +2,39 @@ openapi: 3.0.0
 info:
   title: API simulée pour X-Land
   version: "1.0.0"
+  description: Exposition REST des services fonciers via TestService
+
 servers:
   - url: https://x-land-api.onrender.com
+
 paths:
   /api/verifierTitre:
     get:
-      summary: Vérifie un titre foncier
+      summary: Vérifie un titre foncier par identifiant
       operationId: verifierTitre
       parameters:
         - name: identifiant
           in: query
           required: true
-          schema: { type: string }
+          schema:
+            type: string
       responses:
-        '200': { description: Titre trouvé }
-        '404': { description: Aucun titre }
+        '200':
+          description: Titre trouvé
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Aucun titre trouvé
+          content:
+            application/json:
+              schema:
+                type: object
 
   /api/inscrireTitre:
     post:
-      summary: Inscrire un nouveau titre foncier
+      summary: Inscription d’un nouveau titre foncier
       operationId: inscrireTitre
       requestBody:
         required: true
@@ -28,24 +42,55 @@ paths:
           application/json:
             schema:
               type: object
+              properties:
+                bail:
+                  type: string
+                nicad:
+                  type: string
+                proprietaire:
+                  type: string
+                coordonnees:
+                  type: object
       responses:
-        '200': { description: Titre inscrit }
-        '409': { description: Titre existant }
+        '200':
+          description: Titre inscrit avec succès
+          content:
+            application/json:
+              schema:
+                type: object
+        '409':
+          description: Titre déjà existant
+          content:
+            application/json:
+              schema:
+                type: object
 
   /api/requests/{id}/simulerCadastre:
     post:
-      summary: Simulation attribution NICAD
+      summary: Simulation d’attribution d’un NICAD
       operationId: simulerCadastre
       parameters:
         - name: id
           in: path
           required: true
-          schema: { type: string }
+          schema:
+            type: string
       requestBody:
         required: true
         content:
           application/json:
-            schema: { type: object }
+            schema:
+              type: object
       responses:
-        '200': { description: NICAD attribué }
-        '404': { description: Demande introuvable }
+        '200':
+          description: NICAD attribué
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Demande introuvable
+          content:
+            application/json:
+              schema:
+                type: object
