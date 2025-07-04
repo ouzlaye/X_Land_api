@@ -1,0 +1,51 @@
+openapi: 3.0.0
+info:
+  title: API simulée pour X-Land
+  version: "1.0.0"
+servers:
+  - url: https://x-land-api.onrender.com
+paths:
+  /api/verifierTitre:
+    get:
+      summary: Vérifie un titre foncier
+      operationId: verifierTitre
+      parameters:
+        - name: identifiant
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: Titre trouvé }
+        '404': { description: Aucun titre }
+
+  /api/inscrireTitre:
+    post:
+      summary: Inscrire un nouveau titre foncier
+      operationId: inscrireTitre
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200': { description: Titre inscrit }
+        '409': { description: Titre existant }
+
+  /api/requests/{id}/simulerCadastre:
+    post:
+      summary: Simulation attribution NICAD
+      operationId: simulerCadastre
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object }
+      responses:
+        '200': { description: NICAD attribué }
+        '404': { description: Demande introuvable }
