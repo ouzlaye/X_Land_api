@@ -4,17 +4,19 @@ from services.mairie_service import soumettre_demande
 from services.mairie_service import charger_demandes_existantes 
 from fastapi import HTTPException
 from services.supabase_sync import restaurer_fichier
+import asyncio
+
 router = APIRouter()
 
 @router.post("/citizenRequest", response_model=DemandeFonciere, summary="Soumettre une demande citoyenne de régularisation ou attribution foncière")
-def soumettre_demande_citoyenne(payload: DemandeFonciereCreate):
-    """
-    Permet à un citoyen de soumettre une demande foncière.
-    La demande est enregistrée avec un identifiant unique et un statut initial.
-    """
+async def soumettre_demande_citoyenne(payload: DemandeFonciereCreate):
     demande = soumettre_demande(payload)
-    restaurer_fichier("citizen_requests.json")
+    asyncio.create_task(retarder_restoration())
     return demande
+
+async def retarder_restoration():
+    await asyncio.sleep(5)
+    restaurer_fichier("citizen_requests.json")
 
 
 """@router.get("/citizenRequest/{id}", response_model=DemandeFonciere, summary="Consulter une demande foncière")

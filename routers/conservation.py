@@ -2,6 +2,9 @@ from fastapi import APIRouter, HTTPException, Query
 from schema.conservation_schema import VerifyTitleRequest, TitleFoncierModel
 from services.conservation_service import rechercher_titre_foncier
 from services.fichier_sync import lire_fichier
+from fastapi import APIRouter, Query
+import requests
+from fastapi.responses import JSONResponse
 
 router = APIRouter()
 
@@ -34,3 +37,46 @@ def verifier_titre(
             }
 
     raise HTTPException(status_code=404, detail="Aucun titre correspondant trouvé.")
+
+
+
+
+@router.get("/test_xroad_verification", summary="Tester l’appel X-Road pour la vérification d’un titre")
+def test_xroad_verification(
+    identifiant: str = Query(..., description="Identifiant du titre à tester (NICAD ou numéro de titre)")
+):
+    # Adresse du Security Server X-Road
+    xroad_url = (
+        "http://localhost:8080/r1/CS/ORG/1111/TestService/local-service-test/api/verifierTitre"
+    )
+
+    headers = {
+        "X-Road-Client": "CS/ORG/1111/TestClient"
+    }
+
+    params = {
+        "identifiant": identifiant
+    }
+
+    try:
+        response = requests.get(xroad_url, headers=headers, params=params, timeout=10)
+
+        if response.status_code == 200:
+            return {
+                "statut": "✅ Succès",
+                "données": response.json()
+            }
+        else:
+            return JSONResponse(
+                status_code=response.status_code,
+                content={
+                    "statut": "❌ Échec",
+                    "code": response.status_code,
+                    "erreur": response.text
+                }
+            )
+    except Exception as e:
+        return JSONResponse(
+            status_code=500,
+            content={"statut": "❌ Erreur interne", "détail": str(e)}
+        )
