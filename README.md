@@ -1,126 +1,112 @@
-# 📘 X-Land – API de gestion foncière simplifiée
+# X-Land API
 
-Ce backend simule un circuit complet de traitement d’une demande foncière entre citoyen, mairie, cadastre et DGID. Il est conçu pour servir de socle à une interface front qui permettrait aux citoyens de suivre leur requête foncière étape par étape.
+**Prototype GovTech d'interopérabilité foncière au Sénégal**
 
----
+X-Land est un prototype de plateforme de gestion et de régularisation foncière permettant de simuler le traitement d'un dossier entre un citoyen, une mairie, le cadastre et la DGID.
 
-## 🧭 Fonctionnalités couvertes
+Le projet s'appuie sur une API backend et un serveur X-Road standalone pour expérimenter les échanges de données entre services institutionnels dans un environnement de démonstration.
 
-- ✍️ Soumission d'une demande de régularisation foncière
-- 🌐 Appel simulé au cadastre via X-Road pour demander un NICAD
-- ✅ Validation de la délibération par la mairie
-- 📄 Génération automatique de PDF (délibération, notification d’acte)
-- 🏛️ Demande d’acte foncier (bail ou titre) auprès de la DGID
-- 🔎 Endpoint de suivi complet d’un dossier
+## Objectifs
 
----
+- Simplifier le parcours de régularisation foncière.
+- Faciliter les échanges entre administrations.
+- Assurer la traçabilité des demandes et des réponses.
+- Générer des documents administratifs de démonstration.
+- Préparer une architecture interopérable pour les futurs services X-Land.
 
-## 🧩 Liste des endpoints
+## Architecture
 
-### 📥 1. Création d'une demande citoyenne
+```mermaid
+flowchart TD
+    C[Citoyen] --> API[API X-Land]
+    API --> M[Mairie]
+    M --> XR[Serveur X-Road standalone]
+    XR --> CAD[Service Cadastre]
+    XR --> DGID[Service DGID]
+    CAD --> XR
+    DGID --> XR
+    XR --> API
+    API --> DB[Dossiers et journaux]
+    API --> PDF[Documents PDF]
+```
 
-Payload :
-```json
-{
-  "citoyen": {
-    "nom": "Ndiaye",
-    "prenom": "Fatou",
-    "telephone": "771234567"
-  },
-  "coordonnees": {
-    "A": [248800.0, 1637400.0],
-    "B": [248820.0, 1637400.0],
-    "C": [248820.0, 1637420.0],
-    "D": [248800.0, 1637420.0]
-  },
-  "documents": ["piece_identite.pdf", "justificatif.png"]
-}
+Le serveur X-Road standalone constitue l'environnement d'échange du prototype. Les services institutionnels restent simulés : aucune connexion aux systèmes officiels du cadastre ou de la DGID n'est revendiquée.
 
-🔗 2. Demande de NICAD (par X-Road)
+## Fonctionnalités
 
-POST /api/citizenRequest/{id}/demandeNICAD
+- Création et suivi d'une demande foncière.
+- Transmission d'une demande de NICAD au service cadastral simulé.
+- Traitement des réponses positives ou des motifs de refus.
+- Validation de la délibération par la mairie.
+- Demande d'un acte foncier au service DGID simulé.
+- Production des documents PDF.
+- Journalisation des échanges interservices.
 
-Retourne :
-nicad si accepté
+## Workflow métier
 
-motifRefus si rejeté
+1. Le citoyen soumet sa demande avec les informations d'identification, les coordonnées du terrain et les pièces associées.
+2. La mairie initie une demande de NICAD auprès du service cadastral via l'environnement X-Road.
+3. Le cadastre simulé retourne un NICAD ou un motif de refus.
+4. La mairie valide la délibération lorsque le NICAD est accepté.
+5. Une demande d'acte est transmise au service DGID simulé.
+6. Le dossier est mis à jour et les documents générés deviennent consultables.
 
+## Structure du dépôt
 
-✅ 3. Validation de la délibération
-POST /api/citizenRequest/{id}/validerDeliberation
-Précondition : statut = nicad_valide
+- `main.py` : point d'entrée de l'application.
+- `api_gateway.py` : composant de passerelle API.
+- `config.py` : configuration.
+- `routers/` : routes de l'API.
+- `services/` : logique métier et services.
+- `schema/` : schémas de données.
+- `database/` : gestion des données.
+- `middleware/` : traitements intermédiaires.
+- `blockchain/` : composants liés à la simulation blockchain.
+- `tests/` : tests du prototype.
+- `testservice_api.yaml` : description d'un service de test.
 
-Génère :
-deliberation_pdf
+## Installation
 
-Changement de statut → deliberation_validee
+Prérequis :
 
+- Python et environnement virtuel.
+- Dépendances du projet.
+- Serveur X-Road standalone configuré et accessible.
+- Services de test nécessaires au scénario de démonstration.
 
-🏛️ 4. Demande d’acte foncier à la DGID
-POST /api/citizenRequest/{id}/demandeActe
-Payload :
+```bash
+git clone https://github.com/ouzlaye/X_Land_api.git
+cd X_Land_api
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-json
-{
-  "typeActe": "bail_habitation"
-}
-Types possibles :
+Configurer ensuite les paramètres de connexion au serveur X-Road et aux services exposés conformément à l'environnement de démonstration.
 
-"bail_habitation"
+## API métier
 
-"bail_agricole"
+| Méthode | Endpoint | Fonction |
+|---|---|---|
+| POST | `/api/citizenRequest/{id}/demandeNICAD` | Demande de NICAD |
+| POST | `/api/citizenRequest/{id}/validerDeliberation` | Validation de la délibération |
+| POST | `/api/citizenRequest/{id}/demandeActe` | Demande d'acte foncier |
+| GET | `/api/citizenRequest/{id}` | Suivi du dossier |
 
-"titre_foncier"
+Les données de démonstration sont conservées dans les fichiers du prototype. Les échanges sont journalisés dans `xroad_logs.json`.
 
-Retourne :
+## Perspectives
 
-acte.numero
+- Industrialisation du déploiement X-Road.
+- Authentification et contrôle d'accès par institution.
+- Traçabilité renforcée des transactions.
+- Extension vers X-RaaS (X-Road as a Service).
+- Intégration cartographique et interopérabilité avec les systèmes fonciers nationaux.
 
-acte.pdf
+## Statut du projet
 
-statut = titre_cree
+Prototype de démonstration GovTech. Les services administratifs, les actes et les identifiants fonciers utilisés dans les scénarios sont simulés. Le projet n'est pas un système cadastral officiel et ne produit aucun acte juridiquement opposable.
 
+## Auteur
 
-🔍 5. Suivi d'une demande complète
-GET /api/citizenRequest/{id}
-Retourne toutes les infos citoyennes, coordonnées, NICAD, délibération, acte DGID, et statut du dossier.
-
-🧪 Cas de test recommandé
-Créer une demande citoyenne
-
-Appeler /demandeNICAD → obtenir un nicad
-
-Appeler /validerDeliberation → vérifier deliberation_pdf
-
-Appeler /demandeActe avec un typeActe → obtenir un acte final
-
-Appeler /citizenRequest/{id} pour suivre le dossier complet
-
-Tous les statuts intermédiaires sont visibles dans le fichier citizen_requests.json. Les documents sont générés dans le dossier documents/.
-
-🗃️ Fichiers produits
-citizen_requests.json → base des demandes
-
-xroad_logs.json → journal des appels simulés (mairie ↔ cadastre / DGID)
-
-documents/deliberations/ → PDF de délibération
-
-documents/actes/ → PDF de notification d’acte DGID
-
-🧩 À intégrer côté frontend
-L’interface peut afficher :
-
-Le statut de la demande (ex : nicad_valide, titre_cree)
-
-Les documents PDF (liens à télécharger)
-
-Les messages en cas de refus du cadastre
-
-L’ID de la demande pour permettre le suivi via /citizenRequest/{id}
-
-🚀 Extensions possibles
-Authentification citoyen / agent
-
-Simulations de délais / notifications
-
-Visualisation cartographique avec NICAD
+Projet X-Land — [GitHub](https://github.com/ouzlaye/X_Land_api)
